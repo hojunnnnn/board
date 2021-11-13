@@ -6,6 +6,8 @@ import lombok.*;
 import javax.persistence.*;
 
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Getter
 @Entity
 @ToString
@@ -23,10 +25,6 @@ public class Posts extends TimeEntity {
 
     private String writer;
 
-    @Builder
-    public Posts(String title, String content, String writer) {
-        this.title = title;
-        this.content = content;
-        this.writer = writer;
-    }
+    private Long cnt;
+
 }

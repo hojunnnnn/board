@@ -1,0 +1,18 @@
+#header {
+    background: #66cdaa;
+    color: white;
+    padding: 25px;
+}
+#nav {
+    background: #f5f5f5;
+    padding: 12px;
+    border-top: 2px solid gainsboro;
+    border-bottom: 2px;
+}
+#table {
+    border-bottom: 2px solid gainsboro;
+}
+#btn {
+    border: 1px solid gainsboro;
+    padding: 7px 15px 7px 15px;
+}

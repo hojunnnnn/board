@@ -8,7 +8,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
+
 
 @SpringBootTest
 @Log4j2
@@ -24,14 +25,18 @@ public class PostsRepositoryTest {
 
     @Test
     public void createPostsAndGetPosts() {
-        Posts posts = Posts.builder()
-                .title("제목입니다.")
-                .content("내용입니다.")
-                .writer("작성자")
-                .build();
-        postsRepository.save(posts);
+        String title = "제목 입니다.";
+        String content = "내용 입니다";
+
+        postsRepository.save(Posts.builder().title(title).content(content).writer("hojunnnnn").build());
 
         List<Posts> postsList = postsRepository.findAll();
-        log.info(postsList.get(0));
+
+        Posts posts = postsList.get(0);
+
+        assertThat(posts.getTitle()).isEqualTo(title);
+        assertThat(posts.getContent()).isEqualTo(content);
+
+        log.info(posts);
     }
 }

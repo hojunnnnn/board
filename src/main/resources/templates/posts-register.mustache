@@ -1,0 +1,24 @@
+{{>layout/header}}
+<h2>게시글 등록</h2>
+
+<div class="col-md-12">
+        <form>
+            <div class="form-group">
+                <label for="title">제목</label>
+                <input type="text" class="form-control" id="title" placeholder="제목을 입력하세요">
+            </div>
+
+            <div class="form-group">
+                <label for="writer">작성자</label>
+                <input type="text" class="form-control" id="writer" placeholder="작성자를 입력하세요">
+            </div>
+
+            <div class="form-group">
+                <label for="content">내용</label>
+                <textarea class="form-control" id="content" placeholder="내용을 입력하세요"></textarea>
+            </div>
+        </form>
+        <button type="button"  class="btn btn-primary bi bi-pencil-fill" id="btn"> 작성완료</button>
+        <a href="/" role="button" id="btn" class="btn btn-default">돌아가기</a>
+</div>
+{{>layout/footer}}
