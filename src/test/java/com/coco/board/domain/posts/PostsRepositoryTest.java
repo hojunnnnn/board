@@ -24,7 +24,7 @@ public class PostsRepositoryTest {
     }
 
     @Test
-    public void createPostsAndGetPosts() {
+    public void 게시글_생성_가져오기() {
         String title = "제목 입니다.";
         String content = "내용 입니다";
 

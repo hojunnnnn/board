@@ -12,32 +12,18 @@
     </tr>
     </thead>
     <tbody id="tbody">
+    {{#posts}}
     <tr>
-        <td>1</td>
-        <td>제목 입니다.</td>
-        <td>이호준</td>
-        <td>2021-11-13</td>
-        <td>0</td>
+        <td>{{id}}</td>
+        <td><a href="/posts/read/{{id}}">{{title}}</a></td>
+        <td>{{writer}}</td>
+        <td>{{modifiedDate}}</td>
+        <td>{{view}}</td>
     </tr>
-
-    <tr>
-        <td>2</td>
-        <td>2제목 입니다.</td>
-        <td>이호준</td>
-        <td>2021-11-13</td>
-        <td>0</td>
-    </tr>
-
-    <tr>
-        <td>3</td>
-        <td>3제목 입니다.</td>
-        <td>이호준</td>
-        <td>2021-11-13</td>
-        <td>0</td>
-    </tr>
+    {{/posts}}
     </tbody>
 </table>
-<div class="col-md-12">
-    <a href="/posts/register" id ="btn" role="button" class="btn btn-primary bi bi-pencil-fill float-right"> 글쓰기</a>
+<div class="text-right">
+    <a href="/posts/write" role="button" class="btn btn-primary bi bi-pencil-fill"> 글쓰기</a>
 </div>
 {{>layout/footer}}

@@ -8,26 +8,32 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
+/**
+ * 게시글의 등록과 수정을 처리할 요청(Request) 클래스
+ */
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class PostsDto {
+public class PostsRequestDto {
 
     private Long id;
     private String title;
-    private String content;
     private String writer;
+    private String content;
     private LocalDateTime createdDate, modifiedDate;
+    private int view;
 
+    /* Dto -> Entity */
     public Posts toEntity() {
         Posts posts = Posts.builder()
                 .id(id)
                 .title(title)
-                .content(content)
                 .writer(writer)
+                .content(content)
+                .view(0)
                 .build();
-
         return posts;
     }
 }

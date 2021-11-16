@@ -10,6 +10,9 @@ import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
+/**
+ * 공통적으로 사용되는 컬럼이므로, 이를 상속한 클래스에서 컬럼 추가
+ */
 
 @Getter
 @MappedSuperclass

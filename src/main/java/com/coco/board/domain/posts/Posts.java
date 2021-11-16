@@ -25,6 +25,6 @@ public class Posts extends TimeEntity {
 
     private String writer;
 
-    private Long cnt;
+    private int view;
 
 }
