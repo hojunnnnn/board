@@ -1,7 +1,7 @@
 package com.coco.board.web.dto;
 
 import com.coco.board.domain.posts.Posts;
-import lombok.Getter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -10,7 +10,10 @@ import java.time.LocalDateTime;
  * Entity 클래스를 생성자 파라미터로 받아 데이터를 Dto로 변환하여 응답
  */
 
-@Getter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class PostsResponseDto {
 
     private Long id;

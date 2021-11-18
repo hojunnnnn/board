@@ -1,29 +1,30 @@
 {{>layout/header}}
 
-
-<table id="table" class="table table-horizontal">
-    <thead class="thead-strong">
-    <tr>
-        <th>번호</th>
-        <th>제목</th>
-        <th>작성자</th>
-        <th>등록일</th>
-        <th>조회수</th>
-    </tr>
-    </thead>
-    <tbody id="tbody">
-    {{#posts}}
-    <tr>
-        <td>{{id}}</td>
-        <td><a href="/posts/read/{{id}}">{{title}}</a></td>
-        <td>{{writer}}</td>
-        <td>{{modifiedDate}}</td>
-        <td>{{view}}</td>
-    </tr>
-    {{/posts}}
-    </tbody>
-</table>
-<div class="text-right">
-    <a href="/posts/write" role="button" class="btn btn-primary bi bi-pencil-fill"> 글쓰기</a>
+<div id="posts_list">
+    <table id="table" class="table table-horizontal">
+        <thead class="thead-strong">
+        <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>등록일</th>
+            <th>조회수</th>
+        </tr>
+        </thead>
+        <tbody id="tbody">
+        {{#posts}}
+        <tr>
+            <td>{{id}}</td>
+            <td><a href="/posts/read/{{id}}">{{title}}</a></td>
+            <td>{{writer}}</td>
+            <td>{{modifiedDate}}</td>
+            <td>{{view}}</td>
+        </tr>
+        {{/posts}}
+        </tbody>
+    </table>
+    <div class="text-right">
+        <a href="/posts/write" role="button" class="btn btn-primary bi bi-pencil-fill"> 글쓰기</a>
+    </div>
 </div>
 {{>layout/footer}}

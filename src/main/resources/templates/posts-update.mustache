@@ -1,0 +1,33 @@
+{{>layout/header}}
+
+<div id="posts_list">
+    <div class="col-md-12">
+        <form>
+            <div class="form-group">
+                <label for="id">번호</label>
+                <input type="text" class="form-control" id="id" value="{{posts.id}}" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="title">제목</label>
+                <input type="text" class="form-control" id="title" value="{{posts.title}}">
+            </div>
+
+            <div class="form-group">
+                <label for="writer">작성자</label>
+                <input type="text" class="form-control" id="writer" value="{{posts.writer}}">
+            </div>
+
+            <div class="form-group">
+                <label for="content">내용</label>
+                <textarea rows="5" class="form-control" id="content">{{posts.content}}</textarea>
+            </div>
+        </form>
+        <!--버튼-->
+        <a href="/posts/read/{{id}}" role="button" class="btn btn-info bi bi-arrow-return-left"> 취소</a>
+        <button type="button" id="btn-update" class="btn btn-primary bi bi-pencil-square"> 완료</button>
+        <button type="button" class="btn btn-danger bi bi-trash"> 삭제</button>
+    </div>
+</div>
+
+{{>layout/footer}}

@@ -5,12 +5,16 @@ import com.coco.board.web.dto.PostsRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+/**
+ * REST API Controller
+ */
+
+
 @RequestMapping("/api")
 @RequiredArgsConstructor
+@RestController
 public class PostsApiController {
 
     private final PostsService postsService;
@@ -22,10 +26,14 @@ public class PostsApiController {
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
 
-//    /* READ */
-//    @GetMapping("/posts/{id}")
-//    public ResponseEntity read(@PathVariable Long id, Model model) {
-//        model.addAttribute("posts",postsService.read(id));
-//        return new ResponseEntity<>(model, HttpStatus.OK);
-//    }
+    /* UPDATE */
+    @PutMapping("/posts/{id}")
+    public ResponseEntity<Long> update(@PathVariable Long id, @RequestBody PostsRequestDto requestDto) {
+        if (id == null) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(postsService.update(id, requestDto));
+        }
+    }
+
 }

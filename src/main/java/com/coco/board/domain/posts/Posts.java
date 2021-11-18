@@ -10,7 +10,6 @@ import javax.persistence.*;
 @Builder
 @Getter
 @Entity
-@ToString
 public class Posts extends TimeEntity {
 
     @Id
@@ -26,5 +25,11 @@ public class Posts extends TimeEntity {
     private String writer;
 
     private int view;
+
+    public void update(String title, String writer, String content) {
+        this.title = title;
+        this.writer = writer;
+        this.content = content;
+    }
 
 }
