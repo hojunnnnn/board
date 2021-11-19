@@ -1,10 +1,10 @@
 package com.coco.board.web.controller;
 
+import com.coco.board.domain.posts.Posts;
 import com.coco.board.service.posts.PostsService;
 import com.coco.board.web.dto.PostsRequestDto;
 import com.coco.board.web.dto.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,9 +21,14 @@ public class PostsApiController {
 
     /* CREATE */
     @PostMapping("/posts")
-    public ResponseEntity<Long> write(@RequestBody PostsRequestDto dto) {
-        Long id = postsService.write(dto);
-        return new ResponseEntity<>(id, HttpStatus.OK);
+    public ResponseEntity write(@RequestBody PostsRequestDto dto) {
+        return ResponseEntity.ok(postsService.write(dto));
+    }
+
+    /* READ */
+    @GetMapping("/posts/{id}")
+    public PostsResponseDto read(@PathVariable Long id) {
+        return postsService.findById(id);
     }
 
     /* UPDATE */
@@ -32,10 +37,10 @@ public class PostsApiController {
         return ResponseEntity.ok(postsService.update(id, requestDto));
     }
 
-    /* READ (JSON Data) */
-    @GetMapping("/posts/{id}")
-    public PostsResponseDto findById(@PathVariable Long id) {
-        return postsService.findById(id);
+    /* DELETE */
+    @DeleteMapping("/posts/{id}")
+    public ResponseEntity delete(@PathVariable Long id) {
+        postsService.delete(id);
+        return ResponseEntity.ok(id);
     }
-
 }

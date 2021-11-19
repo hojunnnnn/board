@@ -27,7 +27,6 @@ public class PostsIndexController {
         return "index";
     }
 
-
     @GetMapping("/posts/write")
     public String write() {
         return "posts-write";

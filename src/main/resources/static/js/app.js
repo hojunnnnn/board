@@ -9,6 +9,10 @@ const main = {
         $('#btn-update').on('click', function () {
             _this.update();
         });
+
+        $('#btn-delete').on('click', function () {
+            _this.delete();
+        });
     },
 
     save : function () {
@@ -38,7 +42,7 @@ const main = {
             content: $('#content').val()
         };
 
-        const id =$('#id').val();
+        const id = $('#id').val();
 
         $.ajax({
             type: 'PUT',
@@ -47,8 +51,32 @@ const main = {
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(data)
         }).done(function () {
-            alert('수정되었습니다.');
-            window.location.href = '/posts/read/'+id;
+            const con_check = confirm("수정하시겠습니까?");
+            if (con_check == true) {
+                window.location.href = '/posts/read/' + id;
+            } else {
+                return ;
+            }
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
+        });
+    },
+
+    delete : function () {
+        const id = $('#id').val();
+
+        $.ajax({
+            type: 'DELETE',
+            url: '/api/posts/'+id,
+            dataType: 'JSON',
+            contentType: 'application/json; charset=utf-8'
+        }).done(function () {
+            const con_check = confirm("삭제하시겠습니까?");
+            if (con_check == true) {
+                window.location.href = '/';
+            } else {
+                return ;
+            }
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });
