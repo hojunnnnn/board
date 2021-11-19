@@ -8,7 +8,7 @@ const main = {
 
         $('#btn-update').on('click', function () {
             _this.update();
-        })
+        });
     },
 
     save : function () {
@@ -35,9 +35,10 @@ const main = {
     update : function () {
         const data = {
             title: $('#title').val(),
-            writer: $('#writer').val(),
             content: $('#content').val()
         };
+
+        const id =$('#id').val();
 
         $.ajax({
             type: 'PUT',
@@ -47,7 +48,7 @@ const main = {
             data: JSON.stringify(data)
         }).done(function () {
             alert('수정되었습니다.');
-            window.location.href = '/posts/read'+id;
+            window.location.href = '/posts/read/'+id;
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });

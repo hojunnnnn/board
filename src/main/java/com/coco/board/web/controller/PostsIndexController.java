@@ -21,8 +21,9 @@ public class PostsIndexController {
     private final PostsService postsService;
 
     @GetMapping("/")
-    public String index(Model model) {
+    public String index(Long id, Model model) {
         model.addAttribute("posts", postsService.findAllDesc());
+
         return "index";
     }
 
@@ -35,6 +36,7 @@ public class PostsIndexController {
     @GetMapping("/posts/read/{id}")
     public String read(@PathVariable Long id, Model model) {
         PostsResponseDto dto = postsService.findById(id);
+        postsService.updateView(id); // views ++
         model.addAttribute("posts", dto);
 
         return "posts-read";

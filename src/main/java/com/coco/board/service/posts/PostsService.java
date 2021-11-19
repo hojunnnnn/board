@@ -37,12 +37,12 @@ public class PostsService {
     }
 
     /* READ */
-    @Transactional(readOnly = true)
+
     public PostsResponseDto findById(Long id) {
-        Posts entity = postsRepository.findById(id).orElseThrow(() ->
+        Posts posts = postsRepository.findById(id).orElseThrow(() ->
                 new IllegalArgumentException("해당 게시글이 존재하지 않습니다. id=" + id));
 
-        return new PostsResponseDto(entity);
+        return new PostsResponseDto(posts);
     }
 
     /* UPDATE (dirty checking)*/
@@ -51,9 +51,15 @@ public class PostsService {
         Posts posts = postsRepository.findById(id).orElseThrow(() ->
                 new IllegalArgumentException("해당 게시글이 존재하지 않습니다. id=" + id));
 
-        posts.update(requestDto.getTitle(), requestDto.getWriter(), requestDto.getContent());
+        posts.update(requestDto.getTitle(),requestDto.getContent());
 
         return id;
+    }
+
+    /* Views Counting */
+    @Transactional
+    public int updateView(Long id) {
+        return postsRepository.updateView(id);
     }
 }
 
