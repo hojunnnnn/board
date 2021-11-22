@@ -5,11 +5,14 @@ import com.coco.board.domain.posts.PostsRepository;
 import com.coco.board.web.dto.PostsRequestDto;
 import com.coco.board.web.dto.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
 
 @RequiredArgsConstructor
 @Service
@@ -37,7 +40,7 @@ public class PostsService {
     }
 
     /* READ */
-
+    @Transactional
     public PostsResponseDto findById(Long id) {
         Posts posts = postsRepository.findById(id).orElseThrow(() ->
                 new IllegalArgumentException("해당 게시글이 존재하지 않습니다. id=" + id));
@@ -51,7 +54,7 @@ public class PostsService {
         Posts posts = postsRepository.findById(id).orElseThrow(() ->
                 new IllegalArgumentException("해당 게시글이 존재하지 않습니다. id=" + id));
 
-        posts.update(requestDto.getTitle(),requestDto.getContent());
+        posts.update(requestDto.getTitle(), requestDto.getContent());
 
         return id;
     }
@@ -69,6 +72,29 @@ public class PostsService {
     @Transactional
     public int updateView(Long id) {
         return postsRepository.updateView(id);
+    }
+
+    /* Paging */
+    @Transactional(readOnly = true)
+    public Page<Posts> getPageList(Pageable pageable) {
+        return postsRepository.findAll(pageable);
+    }
+    /* Paging */
+    @Transactional
+    public boolean nextPageCheck(Pageable pageable) {
+        Page<Posts> posts = getPageList(pageable);
+        boolean nextCheck = posts.hasNext();
+
+        return nextCheck;
+    }
+
+    /* Paging */
+    @Transactional
+    public boolean prePageCheck(Pageable pageable) {
+        Page<Posts> posts = getPageList(pageable);
+        boolean preCheck = posts.hasPrevious();
+
+        return preCheck;
     }
 }
 

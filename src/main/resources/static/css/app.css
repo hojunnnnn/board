@@ -14,9 +14,9 @@
 
 
 #footer {
+    position: fixed;
     width: 100%;
     height: 50px;
-    position: absolute;
     left: 0;
     bottom: 0;
     background-color:#363636;
