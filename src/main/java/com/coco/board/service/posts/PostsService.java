@@ -6,10 +6,13 @@ import com.coco.board.web.dto.PostsRequestDto;
 import com.coco.board.web.dto.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,16 +34,8 @@ public class PostsService {
         return posts.getId();
     }
 
-    /* 게시글 리스트 조회 readOnly 속성으로 조회속도 개선 */
+    /* READ 게시글 리스트 조회 readOnly 속성으로 조회속도 개선 */
     @Transactional(readOnly = true)
-    public List<PostsResponseDto> findAllDesc() {
-        return postsRepository.findAllDesc().stream()
-                .map(PostsResponseDto::new)
-                .collect(Collectors.toList());
-    }
-
-    /* READ */
-    @Transactional
     public PostsResponseDto findById(Long id) {
         Posts posts = postsRepository.findById(id).orElseThrow(() ->
                 new IllegalArgumentException("해당 게시글이 존재하지 않습니다. id=" + id));
@@ -74,27 +69,20 @@ public class PostsService {
         return postsRepository.updateView(id);
     }
 
-    /* Paging */
+
+    /* Paging and Sort */
     @Transactional(readOnly = true)
-    public Page<Posts> getPageList(Pageable pageable) {
+    public Page<Posts> pageList(Pageable pageable) {
         return postsRepository.findAll(pageable);
     }
-    /* Paging */
+
+    /* NextPage Check */
     @Transactional
     public boolean nextPageCheck(Pageable pageable) {
-        Page<Posts> posts = getPageList(pageable);
-        boolean nextCheck = posts.hasNext();
+        Page<Posts> posts = pageList(pageable);
+        boolean result = posts.hasNext();
 
-        return nextCheck;
-    }
-
-    /* Paging */
-    @Transactional
-    public boolean prePageCheck(Pageable pageable) {
-        Page<Posts> posts = getPageList(pageable);
-        boolean preCheck = posts.hasPrevious();
-
-        return preCheck;
+        return result;
     }
 }
 

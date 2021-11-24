@@ -2,7 +2,7 @@
 
 <div id="posts_list">
     <table id="table" class="table table-horizontal">
-        <thead class="thead-strong">
+        <thead id="thead">
         <tr>
             <th>번호</th>
             <th>제목</th>
@@ -36,6 +36,11 @@
             <a href="?page={{previous}}" role="button" class="btn btn-lg bi bi-caret-left-square-fill disabled"></a>
         {{/preCheck}}
 
+        {{#pageNo}}
+            <li><a role="button" class="btn btn-lg" href="?page={{.}}">{{.}}</a></li>
+        {{/pageNo}}
+
+
         {{#nextCheck}}
             <a href="?page={{next}}" role="button" class="btn btn-lg bi bi-caret-right-square-fill"></a>
         {{/nextCheck}}
@@ -43,5 +48,6 @@
             <a href="?page={{next}}" role="button" class="btn btn-lg bi bi-caret-right-square-fill disabled"></a>
         {{/nextCheck}}
     </div>
+
 </div>
 {{>layout/footer}}

@@ -40,15 +40,20 @@
     border-top: 2px solid gainsboro;
     border-bottom: 2px;
 }
+
 #posts_list {
     width: 100%;
     position: relative;
     max-width: 1200px;
     margin: 0 auto 20px auto;
 }
+
 #table {
     border-bottom: 2px solid gainsboro;
 }
-
+#thead {
+    background: #434343;
+    color: #ffffff;
+}
 
 
