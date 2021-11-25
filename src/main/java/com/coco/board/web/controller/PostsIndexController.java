@@ -33,8 +33,7 @@ public class PostsIndexController {
     public String index(Model model, @PageableDefault(sort = "id", direction = Sort.Direction.DESC)
             Pageable pageable) {
         Page<Posts> list = postsService.pageList(pageable);
-        /* mustache 템플릿에서 페이지 번호 버튼을 위한 반복문(startPage에서 endPage까지) 사용 불가능
-        *  Controller 단에서 임시로 처리 */
+
         ArrayList pageNo = new ArrayList();
         for (int i = 0; i < list.getTotalPages(); i++) {
             pageNo.add(i);
@@ -43,8 +42,8 @@ public class PostsIndexController {
         model.addAttribute("posts", list);
         model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
         model.addAttribute("next", pageable.next().getPageNumber());
-        model.addAttribute("nextCheck", postsService.nextPageCheck(pageable));
-        model.addAttribute("preCheck", pageable.hasPrevious());
+        model.addAttribute("nextCheck", list.hasNext());
+        model.addAttribute("preCheck", list.hasPrevious());
         model.addAttribute("pageNo", pageNo);
 
         return "index";

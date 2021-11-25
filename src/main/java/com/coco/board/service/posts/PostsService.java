@@ -75,14 +75,5 @@ public class PostsService {
     public Page<Posts> pageList(Pageable pageable) {
         return postsRepository.findAll(pageable);
     }
-
-    /* NextPage Check */
-    @Transactional
-    public boolean nextPageCheck(Pageable pageable) {
-        Page<Posts> posts = pageList(pageable);
-        boolean result = posts.hasNext();
-
-        return result;
-    }
 }
 

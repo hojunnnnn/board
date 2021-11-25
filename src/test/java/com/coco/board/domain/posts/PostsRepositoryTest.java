@@ -18,10 +18,10 @@ public class PostsRepositoryTest {
     @Autowired
     private PostsRepository postsRepository;
 
-//    @AfterEach
-//    public void clear() {
-//        postsRepository.deleteAll();
-//    }
+    @AfterEach
+    public void clear() {
+        postsRepository.deleteAll();
+    }
 
     @Test
     public void 게시글_생성_가져오기() {
@@ -29,6 +29,7 @@ public class PostsRepositoryTest {
         String content = "내용 입니다";
 
         postsRepository.save(Posts.builder().title(title).content(content).writer("coco").build());
+
 
 
         List<Posts> postsList = postsRepository.findAll();
