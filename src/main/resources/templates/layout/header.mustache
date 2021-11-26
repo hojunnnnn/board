@@ -9,13 +9,13 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
-<header id="header">
-    <a href="/">Board Service</a>
-    <form class="form-inline float-right" role="search">
-            <input type="text" class="form-control" id="search" placeholder="검색">
-            <a href="/" type="submit" class="btn btn-success bi bi-search"></a>
+<div id="header"class="d-flex bd-highlight">
+    <a href="/" class="p-2 flex-grow-1 bd-highlight">Board Service</a>
+    <form action="/posts/search" method="GET" class="form-inline p-2 bd-highlight" role="search">
+        <input type="text" name="keyword" class="form-control" id="search" placeholder="검색">
+        <button class="btn btn-success bi bi-search"></button>
     </form>
-</header>
+</div>
 
 <nav id ="nav">
     <div class="text-right">

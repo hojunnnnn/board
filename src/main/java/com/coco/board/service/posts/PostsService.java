@@ -6,16 +6,9 @@ import com.coco.board.web.dto.PostsRequestDto;
 import com.coco.board.web.dto.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 
 @RequiredArgsConstructor
 @Service
@@ -74,6 +67,14 @@ public class PostsService {
     @Transactional(readOnly = true)
     public Page<Posts> pageList(Pageable pageable) {
         return postsRepository.findAll(pageable);
+    }
+
+    /* search */
+    @Transactional
+    public Page<Posts> search(String keyword, Pageable pageable) {
+        Page<Posts> postsList = postsRepository.findByTitleContaining(keyword, pageable);
+
+        return postsList;
     }
 }
 

@@ -12,13 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- *  화면 연결 Controller
+ * 화면 연결 Controller
  */
 
 
@@ -34,17 +30,11 @@ public class PostsIndexController {
             Pageable pageable) {
         Page<Posts> list = postsService.pageList(pageable);
 
-        ArrayList pageNo = new ArrayList();
-        for (int i = 0; i < list.getTotalPages(); i++) {
-            pageNo.add(i);
-        }
-
         model.addAttribute("posts", list);
         model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
         model.addAttribute("next", pageable.next().getPageNumber());
         model.addAttribute("nextCheck", list.hasNext());
         model.addAttribute("preCheck", list.hasPrevious());
-        model.addAttribute("pageNo", pageNo);
 
         return "index";
     }
@@ -69,5 +59,20 @@ public class PostsIndexController {
         model.addAttribute("posts", dto);
 
         return "posts-update";
+    }
+
+    @GetMapping("/posts/search")
+    public String search(String keyword, Model model, @PageableDefault(sort = "id", direction = Sort.Direction.DESC)
+           Pageable pageable) {
+        Page<Posts> searchList = postsService.search(keyword, pageable);
+
+        model.addAttribute("searchList", searchList);
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
+        model.addAttribute("next", pageable.next().getPageNumber());
+        model.addAttribute("nextCheck", searchList.hasNext());
+        model.addAttribute("preCheck", searchList.hasPrevious());
+
+        return "posts-search";
     }
 }
