@@ -1,32 +1,67 @@
 {{>layout/header}}
-
+<br/>
 <div id="posts_list">
     <div class="col-md-12">
-        <form>
-            <div class="form-group">
-                <label for="id">번호</label>
-                <input type="text" class="form-control" id="id" value="{{posts.id}}" readonly>
+        <form class="card">
+            <div class="card-header d-flex justify-content-between">
+                <label for="id">번호 : {{posts.id}}</label>
+                <input type="hidden" id="id" value="{{posts.id}}"> {{! label 연결 }}
+                <label for="createdDate">{{posts.createdDate}}</label>
             </div>
-
-            <div class="form-group">
+            <div class="card-header d-flex justify-content-between">
+                <label for="writer">작성자 : {{posts.writer}}</label>
+                <label for="view"><i class=" bi bi-eye-fill"> {{posts.view}}</i></label>
+            </div>
+            <div class="card-body">
                 <label for="title">제목</label>
                 <input type="text" class="form-control" id="title" value="{{posts.title}}" readonly>
-            </div>
-
-            <div class="form-group">
-                <label for="writer">작성자</label>
-                <input type="text" class="form-control" id="writer" value="{{posts.writer}}" readonly>
-            </div>
-
-            <div class="form-group">
+                <br/>
                 <label for="content">내용</label>
                 <textarea rows="5" class="form-control" id="content" readonly>{{posts.content}}</textarea>
             </div>
         </form>
-        <!--버튼-->
+
+
+        {{! Buttons }}
         <a href="/" role="button" class="btn btn-info bi bi-arrow-return-left"> 목록</a>
         <a href="/posts/update/{{id}}" role="button" class="btn btn-primary bi bi-pencil-square"> 수정</a>
-        <button type="button" id="btn-delete" class="btn btn-danger bi bi-trash"> 삭제</button>
+        <button type="button" onclick="" id="btn-delete" class="btn btn-danger bi bi-trash"> 삭제</button>
+
+        {{! Comments }}
+        <div class="card">
+            <div class="card-header bi bi-chat-dots"> {{! Comments count }} Comments</div>
+            {{! 댓글내용 부분 (미완성) }}
+            <ul class="list-group-flush">
+                <li class="list-group-item">
+                    <div class="font-italic">작성자 : coco &nbsp;</div>
+                    <div class="d-flex justify-content-end">
+                        <button class="badge bi bi-trash"> 삭제</button>
+                    </div>
+                    <div>댓글 내용입니다 !!</div>
+                </li>
+
+                <li class="list-group-item d-flex justify-content-between">
+                    <div>123 댓글 내용입니다 !!</div>
+                    <div class="d-flex">
+                        <div class="font-italic">작성자 : coco &nbsp;</div>
+                        <button class="badge bi bi-trash"> 삭제</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <br/>
+        <div class="card">
+            <div class="card-header bi bi-chat-right-dots"> Write a Comment</div>
+
+            <div class="card-body">
+                <input type="text" class="form-control" id="writer" placeholder="작성자를 입력하세요">
+                <textarea class="form-control" rows="4" placeholder="댓글을 입력하세요"></textarea>
+            </div>
+
+            <div class="card-footer">
+                <button class="btn btn-outline-primary bi bi-pencil-square"> 등록</button>
+            </div>
+        </div>
     </div>
 </div>
 
