@@ -1,9 +1,7 @@
-package com.coco.board.web.dto;
+package com.coco.board.web.dto.posts;
 
 import com.coco.board.domain.posts.Posts;
 import lombok.*;
-
-import java.time.LocalDateTime;
 
 /**
  * 게시글 정보를 리턴할 응답(Response) 클래스
@@ -17,10 +15,15 @@ import java.time.LocalDateTime;
 public class PostsResponseDto {
 
     private Long id;
+
     private String title;
+
     private String writer;
+
     private String content;
-    private LocalDateTime createdDate, modifiedDate;
+
+    private String createdDate, modifiedDate;
+
     private int view;
 
     /* Entity -> Dto*/

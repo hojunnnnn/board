@@ -2,8 +2,9 @@ package com.coco.board.web.controller;
 
 import com.coco.board.domain.posts.Posts;
 import com.coco.board.domain.posts.PostsRepository;
-import com.coco.board.web.dto.PostsRequestDto;
+import com.coco.board.web.dto.posts.PostsRequestDto;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,11 @@ public class PostsApiControllerTest {
 
     @Autowired
     private TestRestTemplate restTemplate;
+
+    @BeforeEach
+    public void reset() {
+        postsRepository.deleteAll();
+    }
 
     @AfterEach
     public void clear() throws Exception {

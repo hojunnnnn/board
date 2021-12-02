@@ -2,13 +2,14 @@ package com.coco.board.service.posts;
 
 import com.coco.board.domain.posts.Posts;
 import com.coco.board.domain.posts.PostsRepository;
-import com.coco.board.web.dto.PostsRequestDto;
-import com.coco.board.web.dto.PostsResponseDto;
+import com.coco.board.web.dto.posts.PostsRequestDto;
+import com.coco.board.web.dto.posts.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 
 @RequiredArgsConstructor
 @Service
@@ -70,7 +71,7 @@ public class PostsService {
     }
 
     /* search */
-    @Transactional
+    @Transactional(readOnly = true)
     public Page<Posts> search(String keyword, Pageable pageable) {
         Page<Posts> postsList = postsRepository.findByTitleContaining(keyword, pageable);
 

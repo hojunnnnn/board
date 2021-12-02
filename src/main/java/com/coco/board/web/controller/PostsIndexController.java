@@ -2,7 +2,7 @@ package com.coco.board.web.controller;
 
 import com.coco.board.domain.posts.Posts;
 import com.coco.board.service.posts.PostsService;
-import com.coco.board.web.dto.PostsResponseDto;
+import com.coco.board.web.dto.posts.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class PostsIndexController {
 
     private final PostsService postsService;
-
 
     @GetMapping("/")                 /* default page = 0, size = 10  */
     public String index(Model model, @PageableDefault(sort = "id", direction = Sort.Direction.DESC)

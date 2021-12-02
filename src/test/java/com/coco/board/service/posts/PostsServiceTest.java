@@ -1,7 +1,7 @@
 package com.coco.board.service.posts;
 
 import com.coco.board.domain.posts.PostsRepository;
-import com.coco.board.web.dto.PostsRequestDto;
+import com.coco.board.web.dto.posts.PostsRequestDto;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;

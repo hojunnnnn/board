@@ -2,6 +2,7 @@ package com.coco.board.domain.posts;
 
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,6 +18,11 @@ public class PostsRepositoryTest {
 
     @Autowired
     private PostsRepository postsRepository;
+
+    @BeforeEach
+    public void reset() {
+        postsRepository.deleteAll();
+    }
 
     @AfterEach
     public void clear() {

@@ -1,7 +1,7 @@
 package com.coco.board.domain.posts;
 
 import com.coco.board.domain.TimeEntity;
-import com.coco.board.domain.comments.Comments;
+import com.coco.board.domain.comment.Comment;
 import lombok.*;
 
 import javax.persistence.*;
@@ -30,9 +30,9 @@ public class Posts extends TimeEntity {
     private int view;
 
     /* mappedBy로 연관관계의 주인이 아님을 명시 (DB에 FK 컬럼을 만들지 않게 설정)
-     *  게시글에서 댓글을 바로 보여줄 수 있게 eager로 수정 */
-    @OneToMany(mappedBy = "posts", fetch = FetchType.EAGER)
-    private List<Comments> comments;
+     *  게시글에서 상세보기를 누르면 댓글을 보여줄 수 있게 LAZY로 수정 */
+    @OneToMany(mappedBy = "posts", fetch = FetchType.LAZY)
+    private List<Comment> comments;
 
 
     public void update(String title, String content) {

@@ -5,10 +5,10 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Column;
-import javax.persistence.EntityListeners;
-import javax.persistence.MappedSuperclass;
-import java.time.LocalDateTime;
+import javax.persistence.*;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * 공통적으로 사용되는 컬럼이므로, 이를 상속한 클래스에서 컬럼 추가
@@ -21,9 +21,22 @@ public abstract class TimeEntity {
 
     @Column(name = "created_date")
     @CreatedDate
-    private LocalDateTime createdDate;
+    private String createdDate;
 
     @Column(name = "modified_date")
     @LastModifiedDate
-    private LocalDateTime modifiedDate;
+    private String modifiedDate;
+
+    /* 해당 엔티티를 저장하기 이전에 실행 */
+    @PrePersist
+    public void onPrePersist(){
+        this.createdDate = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd"));
+        this.modifiedDate = this.createdDate;
+    }
+
+    /* 해당 엔티티를 업데이트 하기 이전에 실행*/
+    @PreUpdate
+    public void onPreUpdate(){
+        this.modifiedDate = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd"));
+    }
 }

@@ -1,9 +1,8 @@
 package com.coco.board.web.controller;
 
-import com.coco.board.domain.posts.Posts;
 import com.coco.board.service.posts.PostsService;
-import com.coco.board.web.dto.PostsRequestDto;
-import com.coco.board.web.dto.PostsResponseDto;
+import com.coco.board.web.dto.posts.PostsRequestDto;
+import com.coco.board.web.dto.posts.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

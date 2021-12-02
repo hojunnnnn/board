@@ -1,11 +1,8 @@
-package com.coco.board.domain.comments;
+package com.coco.board.domain.comment;
 
 import com.coco.board.domain.TimeEntity;
 import com.coco.board.domain.posts.Posts;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -14,7 +11,8 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Getter
 @Entity
-public class Comments extends TimeEntity {
+
+public class Comment extends TimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
