@@ -30,8 +30,9 @@ public class Posts extends TimeEntity {
     private int view;
 
     /* mappedBy로 연관관계의 주인이 아님을 명시 (DB에 FK 컬럼을 만들지 않게 설정)
-     *  게시글에서 상세보기를 누르면 댓글을 보여줄 수 있게 LAZY로 수정 */
-    @OneToMany(mappedBy = "posts", fetch = FetchType.LAZY)
+     *  게시글에서 상세보기를 누르면 댓글을 보여줄 수 있게 LAZY로 수정
+     *  임시로 EAGER */
+    @OneToMany(mappedBy = "posts", fetch = FetchType.EAGER)
     private List<Comment> comments;
 
 

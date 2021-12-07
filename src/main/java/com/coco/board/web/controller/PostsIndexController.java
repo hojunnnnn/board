@@ -40,24 +40,26 @@ public class PostsIndexController {
 
     @GetMapping("/posts/write")
     public String write() {
-        return "posts-write";
+        return "posts/posts-write";
     }
 
     @GetMapping("/posts/read/{id}")
     public String read(@PathVariable Long id, Model model) {
         PostsResponseDto dto = postsService.findById(id);
+
         postsService.updateView(id); // views ++
         model.addAttribute("posts", dto);
 
-        return "posts-read";
+        return "posts/posts-read";
     }
 
     @GetMapping("/posts/update/{id}")
     public String update(@PathVariable Long id, Model model) {
         PostsResponseDto dto = postsService.findById(id);
+
         model.addAttribute("posts", dto);
 
-        return "posts-update";
+        return "posts/posts-update";
     }
 
     @GetMapping("/posts/search")
@@ -72,6 +74,6 @@ public class PostsIndexController {
         model.addAttribute("nextCheck", searchList.hasNext());
         model.addAttribute("preCheck", searchList.hasPrevious());
 
-        return "posts-search";
+        return "posts/posts-search";
     }
 }

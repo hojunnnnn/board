@@ -32,7 +32,7 @@ public class CommentRepositoryTest {
     public void 게시글_댓글_생성_조회() {
         String content = "댓글 입니다.";
 
-        Posts posts = Posts.builder().id(22L).build();
+        Posts posts = Posts.builder().id(2L).build();
 
 
             commentRepository.save(Comment.builder()
