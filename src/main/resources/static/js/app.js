@@ -16,11 +16,16 @@ const main = {
         });
 
         // 회원
-        $('#user-save').on('click', function () {
-            _this.userSave();
+        $('#btn-join').on('click', function () {
+            _this.join();
         });
+
+        $('#btn-login').on('click', function () {
+            _this.login();
+        })
     },
 
+    /* 게시글 */
     save : function () {
         const data = {
             title: $('#title').val(),
@@ -100,7 +105,8 @@ const main = {
         }
     },
 
-    userSave : function () {
+    /* 사용자 */
+    join : function () {
         // alert("user의 userSave 호출됨");
         const data = {
             username: $('#username').val(),
@@ -112,18 +118,39 @@ const main = {
 
         $.ajax({
             type: "POST",
-            url: "/api/user",
+            url: "/api/join",
             dataType: 'JSON',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(data)
 
         }).done(function () {
             alert("회원가입이 완료되었습니다.");
-            window.location.href = "/";
+            window.location.href = "/user/login";
 
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });
+    },
+
+    login : function () {
+        const data = {
+            username: $('#username').val(),
+            password: $('#password').val()
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/api/login",
+            dataType: 'JSON',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(data)
+        }).done(function () {
+            alert("[ " + data.username + " ] 님 환영합니다.");
+            window.location.href = "/";
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
+        })
+
     }
 };
 

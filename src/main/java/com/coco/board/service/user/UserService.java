@@ -14,12 +14,19 @@ public class UserService {
     private final UserRepository userRepository;
 
     @Transactional
-    public Long register(UserRequestDto dto) {
+    public Long join(UserRequestDto dto) {
 
         User user = dto.toEntity();
 
         userRepository.save(user);
 
         return user.getId();
+    }
+
+    @Transactional(readOnly = true)
+    public User login(UserRequestDto dto) {
+        User user = dto.toEntity();
+
+        return userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword());
     }
 }

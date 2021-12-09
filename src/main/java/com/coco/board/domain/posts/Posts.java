@@ -2,6 +2,7 @@ package com.coco.board.domain.posts;
 
 import com.coco.board.domain.TimeEntity;
 import com.coco.board.domain.comment.Comment;
+import com.coco.board.domain.user.User;
 import lombok.*;
 
 import javax.persistence.*;
@@ -35,6 +36,10 @@ public class Posts extends TimeEntity {
     @OneToMany(mappedBy = "posts", fetch = FetchType.EAGER)
     private List<Comment> comments;
 
+
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "writer")
+//    private User user;
 
     public void update(String title, String content) {
         this.title = title;

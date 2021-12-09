@@ -1,12 +1,14 @@
 package com.coco.board.domain.user;
 
 import com.coco.board.domain.TimeEntity;
+import com.coco.board.domain.posts.Posts;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -30,6 +32,8 @@ public class User extends TimeEntity {
     @Column(nullable = false, length = 50)
     private String email;
 
+//    @OneToMany(mappedBy = "user")
+//    private List<Posts> postsList;
     // 나중에 Role 추가
 
 

@@ -19,8 +19,16 @@
 
 <nav id ="nav">
     <div class="text-right">
-        <a href="/" role="button" class="btn btn-outline-dark bi bi-person-circle"> 로그인</a>
-        <a href="user/join" role="button" class="btn btn-outline-dark"> 회원가입</a>
+        {{#user}}
+            <span class="mx-3">{{user}}님 안녕하세요!</span>
+            <a href="/" class="btn btn-outline-dark">로그아웃</a>
+            <a href="/" class="btn btn-outline-dark bi bi-gear"></a>
+        {{/user}}
+        {{^user}}
+            <a href="/login" role="button" class="btn btn-outline-dark bi bi-person-circle"> 로그인</a>
+            <a href="/join" role="button" class="btn btn-outline-dark"> 회원가입</a>
+        {{/user}}
+
     </div>
 </nav>
 
