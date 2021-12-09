@@ -1,4 +1,4 @@
-package com.coco.board.web.controller;
+package com.coco.board.web.controller.posts;
 
 import com.coco.board.service.posts.PostsService;
 import com.coco.board.web.dto.posts.PostsRequestDto;

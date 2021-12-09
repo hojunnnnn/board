@@ -19,13 +19,13 @@ public class User extends TimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String nickname;
+
     @Column(nullable = false, length = 30, unique = true)
     private String username; // 아이디
 
     @Column(nullable = false, length = 100) // 123456 => 해쉬(암호화)를 위해 length 넉넉히
     private String password;
-
-    private String nickname;
 
     @Column(nullable = false, length = 50)
     private String email;

@@ -2,6 +2,7 @@ const main = {
     init : function() {
         const _this = this;
 
+        // 게시글
         $('#btn-save').on('click', function () {
             _this.save();
         });
@@ -13,6 +14,11 @@ const main = {
         $('#btn-delete').on('click', function () {
             _this.delete();
         });
+
+        // 회원
+        $('#user-save').on('click', function () {
+            _this.userSave();
+        });
     },
 
     save : function () {
@@ -21,19 +27,25 @@ const main = {
             writer: $('#writer').val(),
             content: $('#content').val()
         };
-
-        $.ajax({
-            type: 'POST',
-            url: '/api/posts',
-            dataType: 'JSON',
-            contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify(data)
-        }).done(function () {
-            alert('등록되었습니다.');
-            window.location.href = '/';
-        }).fail(function (error) {
-            alert(JSON.stringify(error));
-        });
+        // 공백 및 빈 문자열 체크
+        if (!data.title || data.title.trim() === "" || !data.content || data.content.trim() === "" ||
+            !data.writer || data.writer.trim() === "") {
+            alert("공백 또는 입력하지 않은 부분이 있습니다.");
+            return false;
+        } else {
+            $.ajax({
+                type: 'POST',
+                url: '/api/posts',
+                dataType: 'JSON',
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(data)
+            }).done(function () {
+                alert('등록되었습니다.');
+                window.location.href = '/';
+            }).fail(function (error) {
+                alert(JSON.stringify(error));
+            });
+        }
     },
 
     update : function () {
@@ -43,20 +55,24 @@ const main = {
         };
         const id = $('#id').val();
         const con_check = confirm("수정하시겠습니까?");
-
-        if(con_check == true) {
-            $.ajax({
-                type: 'PUT',
-                url: '/api/posts/'+id,
-                dataType: 'JSON',
-                contentType: 'application/json; charset=utf-8',
-                data: JSON.stringify(data)
-            }).done(function () {
-                alert("수정되었습니다.");
-                window.location.href = '/posts/read/' + id;
-            }).fail(function (error) {
-                alert(JSON.stringify(error));
-            });
+        if (con_check == true) {
+            if (!data.title || data.title.trim() === "" || !data.content || data.content.trim() === "") {
+                alert("공백 또는 입력하지 않은 부분이 있습니다.");
+                return false;
+            } else {
+                $.ajax({
+                    type: 'PUT',
+                    url: '/api/posts/' + id,
+                    dataType: 'JSON',
+                    contentType: 'application/json; charset=utf-8',
+                    data: JSON.stringify(data)
+                }).done(function () {
+                    alert("수정되었습니다.");
+                    window.location.href = '/posts/read/' + id;
+                }).fail(function (error) {
+                    alert(JSON.stringify(error));
+                });
+            }
         } else {
             return false;
         }
@@ -82,7 +98,32 @@ const main = {
         } else {
             return false;
         }
+    },
 
+    userSave : function () {
+        // alert("user의 userSave 호출됨");
+        const data = {
+            username: $('#username').val(),
+            nickname: $('#nickname').val(),
+            password: $('#password').val(),
+            email: $('#email').val()
+        }
+        // console.log(data);
+
+        $.ajax({
+            type: "POST",
+            url: "/api/user",
+            dataType: 'JSON',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(data)
+
+        }).done(function () {
+            alert("회원가입이 완료되었습니다.");
+            window.location.href = "/";
+
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
+        });
     }
 };
 
