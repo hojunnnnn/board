@@ -5,7 +5,6 @@ import com.coco.board.service.user.UserService;
 import com.coco.board.web.dto.user.UserRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +35,4 @@ public class UserApiController {
         }
         return ResponseEntity.ok(user);
     }
-
-
 }

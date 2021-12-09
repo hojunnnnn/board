@@ -3,6 +3,8 @@ package com.coco.board.web.controller.user;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class UserIndexController {
 
@@ -15,7 +17,8 @@ public class UserIndexController {
     public String login() { return "/user/user-login"; }
 
     @GetMapping("/logout")
-    public void logout() {
-
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/";
     }
 }
