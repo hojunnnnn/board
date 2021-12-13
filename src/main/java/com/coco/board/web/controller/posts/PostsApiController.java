@@ -1,6 +1,6 @@
 package com.coco.board.web.controller.posts;
 
-import com.coco.board.service.posts.PostsService;
+import com.coco.board.service.PostsService;
 import com.coco.board.web.dto.posts.PostsRequestDto;
 import com.coco.board.web.dto.posts.PostsResponseDto;
 import lombok.RequiredArgsConstructor;

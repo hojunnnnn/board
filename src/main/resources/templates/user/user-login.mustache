@@ -1,19 +1,20 @@
 {{>layout/header}}
 <div id="posts_list">
     <div class="container col-md-6">
-        <form>
+        <form action="/loginProc" method="post">
             <div class="form-group">
-                <label for="username">아이디</label>
-                <input type="text" class="form-control" id="username" placeholder="아이디를 입력해주세요">
+                <label>아이디</label>
+                <input type="text" class="form-control" name="username" placeholder="아이디를 입력해주세요">
             </div>
 
             <div class="form-group">
-                <label for="password">비밀번호</label>
-                <input type="password" class="form-control" id="password" placeholder="비밀번호를 입력해주세요">
+                <label>비밀번호</label>
+                <input type="password" class="form-control" name="password" placeholder="비밀번호를 입력해주세요">
             </div>
+
+            <button class="btn btn-primary bi bi-person"> 로그인</button>
+            <a href="/" role="button" class="btn btn-info bi bi-arrow-return-left"> 목록</a>
         </form>
-        <button id="btn-login" class="btn btn-primary bi bi-person"> 로그인</button>
-        <a href="/" role="button" class="btn btn-info bi bi-arrow-return-left"> 목록</a>
     </div>
 </div>
 {{>layout/footer}}

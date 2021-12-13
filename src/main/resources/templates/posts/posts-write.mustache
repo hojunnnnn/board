@@ -1,6 +1,6 @@
 {{>layout/header}}
 <div id="posts_list">
-    <div class="col-md-12">
+    <div class="container col-md-8">
             <form>
                 <div class="form-group">
                     <label for="title">제목</label>
@@ -9,7 +9,7 @@
 
                 <div class="form-group">
                     <label for="writer">작성자</label>
-                    <input type="text" class="form-control" id="writer" placeholder="작성자를 입력하세요">
+                    <input type="text" class="form-control" id="writer" value="{{user}}" readonly>
                 </div>
 
                 <div class="form-group">

@@ -36,11 +36,6 @@ public class Posts extends TimeEntity {
     @OneToMany(mappedBy = "posts", fetch = FetchType.EAGER)
     private List<Comment> comments;
 
-
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "writer")
-//    private User user;
-
     public void update(String title, String content) {
         this.title = title;
         this.content = content;

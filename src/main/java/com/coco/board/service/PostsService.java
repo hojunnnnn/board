@@ -1,4 +1,4 @@
-package com.coco.board.service.posts;
+package com.coco.board.service;
 
 import com.coco.board.domain.posts.Posts;
 import com.coco.board.domain.posts.PostsRepository;

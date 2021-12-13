@@ -1,5 +1,6 @@
 package com.coco.board.web.dto.user;
 
+import com.coco.board.domain.user.Role;
 import com.coco.board.domain.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UserRequestDto {
+public class UserDto {
 
     private String username;
 
@@ -20,6 +21,8 @@ public class UserRequestDto {
 
     private String email;
 
+    private Role role;
+
     /* DTO -> Entity */
     public User toEntity() {
         User user = User.builder()
@@ -27,6 +30,7 @@ public class UserRequestDto {
                 .password(password)
                 .nickname(nickname)
                 .email(email)
+                .role(role.USER)
                 .build();
         return user;
     }

@@ -23,9 +23,14 @@
 
 
         {{! Buttons }}
-        <a href="/" role="button" class="btn btn-info bi bi-arrow-return-left"> 목록</a>
-        <a href="/posts/update/{{id}}" role="button" class="btn btn-primary bi bi-pencil-square"> 수정</a>
-        <button type="button" onclick="" id="btn-delete" class="btn btn-danger bi bi-trash"> 삭제</button>
+        {{#user}}
+            <a href="/" role="button" class="btn btn-info bi bi-arrow-return-left"> 목록</a>
+            <a href="/posts/update/{{id}}" role="button" class="btn btn-primary bi bi-pencil-square"> 수정</a>
+            <button type="button" onclick="" id="btn-delete" class="btn btn-danger bi bi-trash"> 삭제</button>
+        {{/user}}
+        {{^user}}
+            <a href="/" role="button" class="btn btn-info bi bi-arrow-return-left"> 목록</a>
+        {{/user}}
 
         {{! Comments }}
         <div class="card">

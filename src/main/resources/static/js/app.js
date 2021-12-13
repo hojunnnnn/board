@@ -16,13 +16,13 @@ const main = {
         });
 
         // 회원
-        $('#btn-join').on('click', function () {
+/*        $('#btn-join').on('click', function () {
             _this.join();
-        });
+        });*/
 
-        $('#btn-login').on('click', function () {
+/*        $('#btn-login').on('click', function () {
             _this.login();
-        })
+        });*/
     },
 
     /* 게시글 */
@@ -103,10 +103,9 @@ const main = {
         } else {
             return false;
         }
-    },
-
+    }
     /* 사용자 */
-    join : function () {
+/*    join : function () {
         // alert("user의 userSave 호출됨");
         const data = {
             username: $('#username').val(),
@@ -118,21 +117,21 @@ const main = {
 
         $.ajax({
             type: "POST",
-            url: "/api/join",
+            url: "/auth/join",
             dataType: 'JSON',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(data)
 
         }).done(function () {
             alert("회원가입이 완료되었습니다.");
-            window.location.href = "/user/login";
+            window.location.href = "/auth/login";
 
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });
-    },
+    }*/
 
-    login : function () {
+/*    login : function () {
         const data = {
             username: $('#username').val(),
             password: $('#password').val()
@@ -150,8 +149,7 @@ const main = {
         }).fail(function (error) {
             alert(JSON.stringify(error));
         })
-
-    }
+    }*/
 };
 
 main.init();
