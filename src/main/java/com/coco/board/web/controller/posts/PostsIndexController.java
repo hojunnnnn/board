@@ -1,5 +1,6 @@
 package com.coco.board.web.controller.posts;
 
+import com.coco.board.config.auth.LoginUser;
 import com.coco.board.web.dto.user.UserSessionDto;
 import com.coco.board.domain.posts.Posts;
 import com.coco.board.service.PostsService;
@@ -14,12 +15,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import javax.servlet.http.HttpSession;
-
 /**
  * 화면 연결 Controller
  */
-
 
 @Controller
 @RequiredArgsConstructor
@@ -27,14 +25,10 @@ public class PostsIndexController {
 
     private final PostsService postsService;
 
-    private final HttpSession session;
-
     @GetMapping("/")                 /* default page = 0, size = 10  */
     public String index(Model model, @PageableDefault(sort = "id", direction = Sort.Direction.DESC)
-            Pageable pageable) {
+            Pageable pageable, @LoginUser UserSessionDto user) {
         Page<Posts> list = postsService.pageList(pageable);
-
-        UserSessionDto user = (UserSessionDto) session.getAttribute("user");
 
         if (user != null) {
             model.addAttribute("user", user.getNickname());
@@ -50,9 +44,7 @@ public class PostsIndexController {
     }
 
     @GetMapping("/posts/write")
-    public String write(Model model) {
-        UserSessionDto user = (UserSessionDto) session.getAttribute("user");
-
+    public String write(@LoginUser UserSessionDto user, Model model) {
         if (user != null) {
             model.addAttribute("user", user.getNickname());
         }
@@ -60,11 +52,8 @@ public class PostsIndexController {
     }
 
     @GetMapping("/posts/read/{id}")
-    public String read(@PathVariable Long id, Model model) {
+    public String read(@PathVariable Long id, @LoginUser UserSessionDto user, Model model) {
         PostsResponseDto dto = postsService.findById(id);
-
-        UserSessionDto user = (UserSessionDto) session.getAttribute("user");
-
         if (user != null) {
             model.addAttribute("user", user.getNickname());
         }
@@ -75,11 +64,8 @@ public class PostsIndexController {
     }
 
     @GetMapping("/posts/update/{id}")
-    public String update(@PathVariable Long id, Model model) {
+    public String update(@PathVariable Long id, @LoginUser UserSessionDto user, Model model) {
         PostsResponseDto dto = postsService.findById(id);
-
-        UserSessionDto user = (UserSessionDto) session.getAttribute("user");
-
         if (user != null) {
             model.addAttribute("user", user.getNickname());
         }
@@ -90,15 +76,12 @@ public class PostsIndexController {
 
     @GetMapping("/posts/search")
     public String search(String keyword, Model model, @PageableDefault(sort = "id", direction = Sort.Direction.DESC)
-           Pageable pageable) {
+           Pageable pageable, @LoginUser UserSessionDto user) {
         Page<Posts> searchList = postsService.search(keyword, pageable);
-
-        UserSessionDto user = (UserSessionDto) session.getAttribute("user");
 
         if (user != null) {
             model.addAttribute("user", user.getNickname());
         }
-
         model.addAttribute("searchList", searchList);
         model.addAttribute("keyword", keyword);
         model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());

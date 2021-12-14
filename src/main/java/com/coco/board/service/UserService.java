@@ -1,6 +1,5 @@
 package com.coco.board.service;
 
-import com.coco.board.domain.user.User;
 import com.coco.board.domain.user.UserRepository;
 import com.coco.board.web.dto.user.UserDto;
 import lombok.RequiredArgsConstructor;

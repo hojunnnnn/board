@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @RequiredArgsConstructor
 @Controller
-public class UserIndexController {
+public class UserController {
 
     private final UserService userService;
 
