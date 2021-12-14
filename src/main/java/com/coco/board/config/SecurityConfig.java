@@ -42,20 +42,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
+                .csrf().ignoringAntMatchers("/api/**") /* REST API 사용 예외처리 */
+                .and()
                 .authorizeRequests()
-                .antMatchers("/", "/auth/**", "/posts/read/**", "/posts/search/**")
-                .permitAll()
-                .anyRequest()
-                .authenticated()
+                .antMatchers("/", "/auth/**", "/posts/read/**", "/posts/search/**").permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/auth/login")
-                .loginProcessingUrl("/loginProc") // 시큐리티가 해당 주소로 오는 요청을 가로챔
+                .loginProcessingUrl("/loginProc")
                 .defaultSuccessUrl("/")
                 .and()
                 .logout()
-                .logoutSuccessUrl("/")
-                .invalidateHttpSession(true);
+                .invalidateHttpSession(true).deleteCookies("JSESSIONID");
     }
 }
