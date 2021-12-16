@@ -66,5 +66,9 @@ input:invalid {
     color: #ffffff;
 }
 
+#validator {
+    font-size: xx-small;
+    color: red;
+}
 
 

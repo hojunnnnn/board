@@ -1,6 +1,6 @@
 package com.coco.board.config;
 
-import com.coco.board.config.auth.MyUserDetailsService;
+import com.coco.board.config.auth.CustomUserDetailsService;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
 @RequiredArgsConstructor
 @Configuration // 빈등록 (IoC)
@@ -19,7 +20,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableGlobalMethodSecurity(prePostEnabled = true) // 특정 주소로 접근하면 권한 및 인증을 미리 체크
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final MyUserDetailsService myUserDetailsService;
+    private final CustomUserDetailsService myUserDetailsService;
 
     @Bean
     public BCryptPasswordEncoder Encoder() {
@@ -50,7 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/auth/login")
-                .loginProcessingUrl("/loginProc")
+                .loginProcessingUrl("/auth/loginProc")
                 .defaultSuccessUrl("/")
                 .and()
                 .logout()

@@ -1,7 +1,7 @@
 {{>layout/header}}
 <div id="posts_list">
     <div class="container col-md-6">
-        <form action="/loginProc" method="post">
+        <form action="/auth/loginProc" method="post">
             <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
             <div class="form-group">
                 <label>아이디</label>
@@ -13,6 +13,11 @@
                 <input type="password" class="form-control" name="password" placeholder="비밀번호를 입력해주세요">
             </div>
 
+            <span>
+                {{#errorMessage}}
+                    <p class="error-message">{{errorMessage}}</p>
+                {{/errorMessage}}
+            </span>
             <button class="btn btn-primary bi bi-person"> 로그인</button>
             <a href="/" role="button" class="btn btn-info bi bi-arrow-return-left"> 목록</a>
         </form>

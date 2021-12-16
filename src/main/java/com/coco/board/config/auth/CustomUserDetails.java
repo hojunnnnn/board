@@ -13,7 +13,7 @@ import java.util.Collection;
 * 스프링 시큐리티의 고유한 세션저장소에 저장 해준다.
 * */
 @AllArgsConstructor
-public class MyUserDetails implements UserDetails {
+public class CustomUserDetails implements UserDetails {
 
     private User user;
 

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 
 @RequiredArgsConstructor
 @Component
-public class MyUserDetailsService implements UserDetailsService {
+public class CustomUserDetailsService implements UserDetailsService {
 
     private final UserRepository userRepository;
 
@@ -28,6 +28,6 @@ public class MyUserDetailsService implements UserDetailsService {
         session.setAttribute("user", new UserSessionDto(user));
 
         /* 시큐리티 세션에 유저 정보 저장 */
-        return new MyUserDetails(user);
+        return new CustomUserDetails(user);
     }
 }
