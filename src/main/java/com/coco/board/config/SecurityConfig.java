@@ -1,5 +1,6 @@
 package com.coco.board.config;
 
+import com.coco.board.config.auth.CustomAuthFailureHandler;
 import com.coco.board.config.auth.CustomUserDetailsService;
 
 import lombok.RequiredArgsConstructor;
@@ -27,6 +28,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    @Bean /* 인증 실패 핸들러 빈 등록 */
+    public AuthenticationFailureHandler failureHandler() {
+        return new CustomAuthFailureHandler();
+    }
+
     /* 어떤 해쉬로 암호화 했는지 확인 */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -52,6 +58,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/auth/login")
                 .loginProcessingUrl("/auth/loginProc")
+                .failureUrl("/login?error=true")
+                .failureHandler(failureHandler())
                 .defaultSuccessUrl("/")
                 .and()
                 .logout()
