@@ -33,6 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new CustomAuthFailureHandler();
     }
 
+
     /* 어떤 해쉬로 암호화 했는지 확인 */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {

@@ -1,6 +1,5 @@
 package com.coco.board.service;
 
-import com.coco.board.domain.user.User;
 import com.coco.board.domain.user.UserRepository;
 import com.coco.board.web.dto.user.UserRequestDto;
 import lombok.RequiredArgsConstructor;
@@ -41,30 +40,5 @@ public class UserService {
             validatorResult.put(validKeyName, error.getDefaultMessage());
         }
         return validatorResult;
-    }
-
-    /* 아이디, 닉네임, 이메일 중복 여부 확인 */
-    @Transactional(readOnly = true)
-    public void checkUsernameDuplicate(UserRequestDto dto) {
-        boolean usernameDuplicate = userRepository.existsByUsername(dto.toEntity().getUsername());
-        if (usernameDuplicate) {
-            throw new IllegalStateException("이미 존재하는 아이디입니다.");
-        }
-    }
-
-    @Transactional(readOnly = true)
-    public void checkNicknameDuplicate(UserRequestDto dto) {
-        boolean usernameDuplicate = userRepository.existsByNickname(dto.toEntity().getNickname());
-        if (usernameDuplicate) {
-            throw new IllegalStateException("이미 존재하는 닉네임입니다.");
-        }
-    }
-
-    @Transactional(readOnly = true)
-    public void checkEmailDuplicate(UserRequestDto dto) {
-        boolean usernameDuplicate = userRepository.existsByEmail(dto.toEntity().getEmail());
-        if (usernameDuplicate) {
-            throw new IllegalStateException("이미 존재하는 이메일입니다.");
-        }
     }
 }
