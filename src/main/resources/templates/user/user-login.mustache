@@ -14,12 +14,12 @@
             </div>
 
             <span>
-                {{#errorMessage}}
-                    <p class="error-message">{{errorMessage}}</p>
-                {{/errorMessage}}
+                {{#error}}
+                    <p id="valid" class="alert alert-danger">{{exception}}</p>
+                {{/error}}
             </span>
-            <button class="btn btn-primary bi bi-person"> 로그인</button>
-            <a href="/" role="button" class="btn btn-info bi bi-arrow-return-left"> 목록</a>
+
+                <button class="form-control btn btn-primary bi bi-lock-fill"> 로그인</button>
         </form>
     </div>
 </div>

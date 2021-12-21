@@ -23,18 +23,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final CustomUserDetailsService myUserDetailsService;
 
+    private final AuthenticationFailureHandler customFailurHandler;
+
     @Bean
     public BCryptPasswordEncoder Encoder() {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean /* 인증 실패 핸들러 빈 등록 */
-    public AuthenticationFailureHandler failureHandler() {
-        return new CustomAuthFailureHandler();
-    }
-
-
-    /* 어떤 해쉬로 암호화 했는지 확인 */
+    /* 시큐리티가 로그인 과정에서 password를 가로챌때 어떤 해쉬로 암호화 했는지 확인 */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(myUserDetailsService).passwordEncoder(Encoder());
@@ -59,8 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/auth/login")
                 .loginProcessingUrl("/auth/loginProc")
-                .failureUrl("/login?error=true")
-                .failureHandler(failureHandler())
+                .failureHandler(customFailurHandler)
                 .defaultSuccessUrl("/")
                 .and()
                 .logout()

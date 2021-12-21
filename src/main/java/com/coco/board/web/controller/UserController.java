@@ -17,12 +17,16 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.Map;
 
+/**
+ * 회원 관련 Controller
+ */
 @RequiredArgsConstructor
 @Controller
 @Log4j2
@@ -33,6 +37,7 @@ public class UserController {
     private final NicknameCheckValidator nicknameCheckValidator;
     private final EmailCheckValidator emailCheckValidator;
 
+    /* 커스텀 유효성 검증을 위해 추가 */
     @InitBinder
     public void validatorBinder(WebDataBinder binder) {
         binder.addValidators(usernameCheckValidator);
@@ -60,17 +65,16 @@ public class UserController {
             /* 회원가입 페이지로 다시 리턴 */
             return "/user/user-join";
         }
-        /* 중복검사 */
-/*        userService.checkUsernameDuplication(userDto);
-        userService.checkNicknameDuplication(userDto);
-        userService.checkEmailDuplication(userDto);*/
-
         userService.userJoin(userDto);
         return "redirect:/auth/login";
     }
 
     @GetMapping("/auth/login")
-    public String login() {
+    public String login(@RequestParam(value = "error", required = false)String error,
+                        @RequestParam(value = "exception", required = false)String exception,
+                        Model model) {
+        model.addAttribute("error", error);
+        model.addAttribute("exception", exception);
         return "/user/user-login";
     }
 
