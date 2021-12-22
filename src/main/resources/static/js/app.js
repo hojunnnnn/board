@@ -23,6 +23,10 @@ const main = {
 /*        $('#btn-login').on('click', function () {
             _this.login();
         });*/
+
+        $('#btn-modify').on('click', function () {
+            _this.modify();
+        });
     },
 
     /* 게시글 */
@@ -103,7 +107,7 @@ const main = {
         } else {
             return false;
         }
-    }
+    },
     /* 사용자 */
 /*    join : function () {
         // alert("user의 userSave 호출됨");
@@ -131,25 +135,40 @@ const main = {
         });
     }*/
 
-/*    login : function () {
+    modify : function () {
         const data = {
+            id: $('#id').val(),
             username: $('#username').val(),
+            nickname: $('#nickname').val(),
             password: $('#password').val()
         }
+        if(!data.nickname || data.nickname.trim() === "" || !data.password || data.password.trim() === "") {
+            alert("공백 또는 입력하지 않은 부분이 있습니다.");
+            return false;
+        } else if(!/(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\W)(?=\S+$).{8,16}/.test(data.password)) {
+            alert("비밀번호는 8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.");
+            $('#password').focus();
+            return false;
+        }
+        const con_check = confirm("수정하시겠습니까?");
+        if (con_check === true) {
+            $.ajax({
+                type: "PUT",
+                url: "/api/user",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(data)
 
-        $.ajax({
-            type: "POST",
-            url: "/api/login",
-            dataType: 'JSON',
-            contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify(data)
-        }).done(function () {
-            alert("[ " + data.username + " ] 님 환영합니다.");
-            window.location.href = "/";
-        }).fail(function (error) {
-            alert(JSON.stringify(error));
-        })
-    }*/
+            }).done(function () {
+                alert("회원수정이 완료되었습니다.");
+                window.location.href = "/";
+
+            }).fail(function (error) {
+                alert("이미 사용중인 닉네임 입니다.");
+                $('#nickname').focus();
+                alert(JSON.stringify(error));
+            });
+        }
+    }
 };
 
 main.init();

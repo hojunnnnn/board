@@ -1,8 +1,13 @@
 package com.coco.board.service;
 
+import com.coco.board.domain.user.User;
 import com.coco.board.domain.user.UserRepository;
 import com.coco.board.web.dto.user.UserRequestDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,5 +45,15 @@ public class UserService {
             validatorResult.put(validKeyName, error.getDefaultMessage());
         }
         return validatorResult;
+    }
+
+    /* 회원수정 (dirty checking) */
+    @Transactional
+    public void modify(UserRequestDto dto) {
+        User user = userRepository.findById(dto.toEntity().getId()).orElseThrow(() ->
+                new IllegalArgumentException("해당 회원이 존재하지 않습니다."));
+
+        String encPassword = encoder.encode(dto.getPassword());
+        user.modify(dto.getNickname(), encPassword);
     }
 }

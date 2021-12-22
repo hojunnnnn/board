@@ -37,7 +37,9 @@ public class PostsService {
         return new PostsResponseDto(posts);
     }
 
-    /* UPDATE (dirty checking)*/
+    /* UPDATE (dirty checking 영속성 컨텍스트)
+    *  User 객체를 영속화시키고, 영속화된 User 객체를 가져와 데이터를 변경하면
+    * 트랜잭션이 끝날 때 자동으로 DB에 저장해준다. */
     @Transactional
     public Long update(Long id, PostsRequestDto requestDto) {
         Posts posts = postsRepository.findById(id).orElseThrow(() ->

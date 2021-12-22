@@ -25,7 +25,7 @@ public class User extends TimeEntity {
     @Column(nullable = false, unique = true)
     private String nickname;
 
-    @Column(nullable = false, length = 100) // 123456 => 해쉬(암호화)를 위해 length 넉넉히
+    @Column(nullable = false, length = 100)
     private String password;
 
     @Column(nullable = false, length = 50)
@@ -34,4 +34,9 @@ public class User extends TimeEntity {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
+
+    public void modify(String nickname, String password) {
+        this.nickname = nickname;
+        this.password = password;
+    }
 }

@@ -1,12 +1,13 @@
 package com.coco.board.web.controller;
 
+import com.coco.board.config.auth.LoginUser;
 import com.coco.board.validator.EmailCheckValidator;
 import com.coco.board.validator.NicknameCheckValidator;
 import com.coco.board.validator.UsernameCheckValidator;
 import com.coco.board.service.UserService;
 import com.coco.board.web.dto.user.UserRequestDto;
+import com.coco.board.web.dto.user.UserSessionDto;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -29,7 +30,6 @@ import java.util.Map;
  */
 @RequiredArgsConstructor
 @Controller
-@Log4j2
 public class UserController {
 
     private final UserService userService;
@@ -87,5 +87,15 @@ public class UserController {
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
         return "redirect:/";
+    }
+
+    /* 회원정보 수정 */
+    @GetMapping("/modify")
+    public String modify(@LoginUser UserSessionDto userDto, Model model) {
+        if (userDto != null) {
+            model.addAttribute("user", userDto.getNickname());
+            model.addAttribute("userDto", userDto);
+        }
+        return "/user/user-modify";
     }
 }
