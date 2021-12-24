@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.List;
 
@@ -15,6 +16,9 @@ public class UserRepositoryTest {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder encoder;
 
     @BeforeEach
     public void setUp() {
@@ -29,15 +33,15 @@ public class UserRepositoryTest {
     @Test
     public void 유저_생성_가져오기() {
         String username = "coco";
-        String password = "1234";
-
-        userRepository.save(User.builder().username(username).password(password).nickname("홍길동").email("coco@nate.com").build());
+        String rawPassword = "123!@#qwe";
+        String encPassword = encoder.encode(rawPassword);
+        userRepository.save(User.builder().username(username).password(encPassword).nickname("홍길동").email("coco@nate.com").role(Role.USER).build());
 
         List<User> userList = userRepository.findAll();
 
         User user = userList.get(0);
 
         assertThat(user.getUsername()).isEqualTo(username);
-        assertThat(user.getPassword()).isEqualTo(password);
+        assertThat(user.getPassword()).isEqualTo(encPassword);
     }
 }
