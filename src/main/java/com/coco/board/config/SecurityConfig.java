@@ -1,5 +1,6 @@
 package com.coco.board.config;
 
+import com.coco.board.config.oauth.CustomOAuth2UserService;
 import com.coco.board.config.auth.CustomUserDetailsService;
 
 import lombok.RequiredArgsConstructor;
@@ -14,16 +15,19 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @RequiredArgsConstructor
-@Configuration // 빈등록 (IoC)
-@EnableWebSecurity // 시큐리티 설정 등록
+@Configuration
+@EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true) // 특정 주소로 접근하면 권한 및 인증을 미리 체크
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final CustomUserDetailsService myUserDetailsService;
 
     private final AuthenticationFailureHandler customFailurHandler;
+
+    private final CustomOAuth2UserService customOAuth2UserService;
 
     @Bean
     public BCryptPasswordEncoder Encoder() {
@@ -65,6 +69,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/")
                 .and()
                 .logout()
-                .invalidateHttpSession(true).deleteCookies("JSESSIONID");
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .invalidateHttpSession(true).deleteCookies("JSESSIONID")
+                .logoutSuccessUrl("/")
+                .and()
+                .oauth2Login()
+                .userInfoEndpoint() // OAuth2 로그인 성공 후 가져올 설정들
+                .userService(customOAuth2UserService); // 서버에서 사용자 정보를 가져온 상태에서 추가로 진행하고자 하는 기능 명시
     }
 }

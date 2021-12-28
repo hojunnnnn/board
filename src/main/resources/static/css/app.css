@@ -71,4 +71,6 @@ input:invalid {
     color: red;
 }
 
+#img { width: 20px; height: auto; padding-bottom: 4px; }
+
 
