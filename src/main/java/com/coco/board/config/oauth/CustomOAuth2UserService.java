@@ -48,11 +48,9 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         /* OAuth2UserService */
         OAuthAttributes attributes = OAuthAttributes.of(registrationId, userNameAttributeName, oAuth2User.getAttributes());
         log.info("=============================================");
-        log.info("attribute.getUsername: " + attributes.getUsername() + " getEmail(): " + attributes.getEmail()
-        + " getNickname(): " + attributes.getNickname() + " getAttributes(): " + attributes.getAttributes());
-        log.info("=============================================");
+        log.info("getAttributes(): " + attributes.getAttributes());
 
-        User user = saveOrCover(attributes);
+        User user = saveOrUpdate(attributes);
 
         /* 세션 정보를 저장하는 직렬화된 dto 클래스 */
         session.setAttribute("user", new UserSessionDto(user));
@@ -63,10 +61,10 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
                 attributes.getNameAttributeKey());
     }
 
-    /* 소셜로그인시 기존 회원이 존재하면 동일한 email만을 덮어씌워 기존의 데이터를 보존한다. */
-    private User saveOrCover(OAuthAttributes attributes) {
+    /* 소셜로그인시 기존 회원이 존재하면 수정날짜 정보만 업데이트해 기존의 데이터는 그대로 보존한다. */
+    private User saveOrUpdate(OAuthAttributes attributes) {
         User user = userRepository.findByEmail(attributes.getEmail())
-                .map(entity -> entity.emailCover(attributes.getEmail()))
+                .map(User::updateModifiedDate)
                 .orElse(attributes.toEntity());
 
         return userRepository.save(user);

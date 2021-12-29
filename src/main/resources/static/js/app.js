@@ -138,6 +138,7 @@ const main = {
     modify : function () {
         const data = {
             id: $('#id').val(),
+            modifiedDate: $('#modifiedDate').val(),
             username: $('#username').val(),
             nickname: $('#nickname').val(),
             password: $('#password').val()
