@@ -1,10 +1,7 @@
 package com.coco.board.domain.user;
 
 import com.coco.board.domain.TimeEntity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -12,7 +9,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Builder
 @Getter
-@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"username", "email", "nickname"})})
 @Entity
 public class User extends TimeEntity {
 
@@ -20,10 +16,10 @@ public class User extends TimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 30)
+    @Column(nullable = false, length = 30, unique = true)
     private String username; // 아이디
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String nickname;
 
     @Column(length = 100)

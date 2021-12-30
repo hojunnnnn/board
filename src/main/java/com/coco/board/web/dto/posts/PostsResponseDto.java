@@ -1,10 +1,7 @@
 package com.coco.board.web.dto.posts;
 
-import com.coco.board.domain.comment.Comment;
 import com.coco.board.domain.posts.Posts;
 import lombok.*;
-
-import java.util.List;
 
 /**
  * 게시글 정보를 리턴할 응답(Response) 클래스
@@ -18,16 +15,12 @@ import java.util.List;
 public class PostsResponseDto {
 
     private Long id;
-
     private String title;
-
     private String writer;
-
     private String content;
-
     private String createdDate, modifiedDate;
-
     private int view;
+    private Long userId;
 
     /* Entity -> Dto*/
     public PostsResponseDto(Posts posts) {
@@ -38,6 +31,7 @@ public class PostsResponseDto {
         this.createdDate = posts.getCreatedDate();
         this.modifiedDate = posts.getModifiedDate();
         this.view = posts.getView();
+        this.userId = posts.getUser().getId();
     }
 
 }

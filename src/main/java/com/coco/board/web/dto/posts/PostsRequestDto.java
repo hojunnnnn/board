@@ -1,6 +1,8 @@
 package com.coco.board.web.dto.posts;
 
 import com.coco.board.domain.posts.Posts;
+import com.coco.board.domain.user.User;
+import com.coco.board.web.dto.user.UserSessionDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,16 +19,12 @@ import lombok.NoArgsConstructor;
 public class PostsRequestDto {
 
     private Long id;
-
     private String title;
-
     private String writer;
-
     private String content;
-
     private String createdDate, modifiedDate;
-
     private int view;
+    private User user;
 
     /* Dto -> Entity */
     public Posts toEntity() {
@@ -36,7 +34,9 @@ public class PostsRequestDto {
                 .writer(writer)
                 .content(content)
                 .view(0)
+                .user(user)
                 .build();
+
         return posts;
     }
 }

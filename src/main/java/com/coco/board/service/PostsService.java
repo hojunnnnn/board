@@ -2,27 +2,34 @@ package com.coco.board.service;
 
 import com.coco.board.domain.posts.Posts;
 import com.coco.board.domain.posts.PostsRepository;
+import com.coco.board.domain.user.User;
+import com.coco.board.domain.user.UserRepository;
 import com.coco.board.web.dto.posts.PostsRequestDto;
 import com.coco.board.web.dto.posts.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class PostsService {
 
     private final PostsRepository postsRepository;
 
+    private final UserRepository userRepository;
+
     /* CREATE */
     @Transactional
-    public Long write(PostsRequestDto dto) {
-
+    public Long save(String nickname, PostsRequestDto dto) {
+        /* User 정보를 가져와 dto에 담아준다. */
+        User user = userRepository.findByNickname(nickname);
+        dto.setUser(user);
+        log.info("PostsService save() 실행");
         Posts posts = dto.toEntity();
-
         postsRepository.save(posts);
 
         return posts.getId();

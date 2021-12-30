@@ -56,6 +56,11 @@ public class PostsIndexController {
         PostsResponseDto dto = postsService.findById(id);
         if (user != null) {
             model.addAttribute("user", user.getNickname());
+
+            /*게시글 작성자 본인인지 확인*/
+            if (dto.getUserId().equals(user.getId())) {
+                model.addAttribute("writer", true);
+            }
         }
         postsService.updateView(id); // views ++
         model.addAttribute("posts", dto);
