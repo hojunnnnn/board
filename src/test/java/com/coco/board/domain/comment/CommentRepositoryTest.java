@@ -1,16 +1,15 @@
 package com.coco.board.domain.comment;
 
 import com.coco.board.domain.posts.Posts;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import com.coco.board.domain.user.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.assertj.core.api.Assertions.*;
-
 import java.util.List;
 import java.util.stream.IntStream;
+
+import static org.assertj.core.api.Assertions.*;
 
 @SpringBootTest
 public class CommentRepositoryTest {
@@ -32,12 +31,12 @@ public class CommentRepositoryTest {
     public void 게시글_댓글_생성_조회() {
         String content = "댓글 입니다.";
 
-        Posts posts = Posts.builder().id(2L).build();
-
+        Posts posts = Posts.builder().id(1L).build();
+        User user = User.builder().id(1L).build();
 
             commentRepository.save(Comment.builder()
-                    .content(content)
-                    .writer("coco")
+                    .comment(content)
+                    .user(user)
                     .posts(posts)
                     .build());
 
@@ -45,7 +44,7 @@ public class CommentRepositoryTest {
 
             Comment comment = comments.get(0);
 
-            assertThat(comment.getContent()).isEqualTo(content);
+            assertThat(comment.getComment()).isEqualTo(content);
     }
 
     @Test
@@ -54,10 +53,10 @@ public class CommentRepositoryTest {
             long id = (long)(Math.random() * 22) + 1;
 
             Posts posts = Posts.builder().id(id).build();
-
+            User user = User.builder().id(id).build();
             Comment comment = Comment.builder()
-                    .content(i + "번째 댓글입니다.")
-                    .writer("coco" + i)
+                    .comment(i + "번째 댓글입니다.")
+                    .user(user)
                     .posts(posts)
                     .build();
 

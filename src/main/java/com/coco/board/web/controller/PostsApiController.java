@@ -2,6 +2,7 @@ package com.coco.board.web.controller;
 
 import com.coco.board.config.auth.LoginUser;
 import com.coco.board.service.PostsService;
+import com.coco.board.web.dto.comment.CommentRequestDto;
 import com.coco.board.web.dto.posts.PostsRequestDto;
 import com.coco.board.web.dto.posts.PostsResponseDto;
 import com.coco.board.web.dto.user.UserSessionDto;
@@ -24,7 +25,9 @@ public class PostsApiController {
 
     /* CREATE */
     @PostMapping("/posts")
-    public ResponseEntity save(@RequestBody PostsRequestDto dto, @LoginUser UserSessionDto userSessionDto) { return ResponseEntity.ok(postsService.save(userSessionDto.getNickname(), dto)); }
+    public ResponseEntity save(@RequestBody PostsRequestDto dto, @LoginUser UserSessionDto userSessionDto) {
+        return ResponseEntity.ok(postsService.save(userSessionDto.getNickname(), dto));
+    }
 
     /* READ */
     @GetMapping("/posts/{id}")

@@ -19,7 +19,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class PostsService {
 
     private final PostsRepository postsRepository;
-
     private final UserRepository userRepository;
 
     /* CREATE */

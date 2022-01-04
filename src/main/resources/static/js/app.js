@@ -15,17 +15,14 @@ const main = {
             _this.delete();
         });
 
-        // 회원
-/*        $('#btn-join').on('click', function () {
-            _this.join();
-        });*/
+        // 사용자
+        $('#btn-user-modify').on('click', function () {
+            _this.userModify();
+        });
 
-/*        $('#btn-login').on('click', function () {
-            _this.login();
-        });*/
-
-        $('#btn-modify').on('click', function () {
-            _this.modify();
+        // 댓글
+        $('#btn-comment-save').on('click', function () {
+            _this.commentSave();
         });
     },
 
@@ -37,8 +34,7 @@ const main = {
             content: $('#content').val()
         };
         // 공백 및 빈 문자열 체크
-        if (!data.title || data.title.trim() === "" || !data.content || data.content.trim() === "" ||
-            !data.writer || data.writer.trim() === "") {
+        if (!data.title || data.title.trim() === "" || !data.content || data.content.trim() === "") {
             alert("공백 또는 입력하지 않은 부분이 있습니다.");
             return false;
         } else {
@@ -59,10 +55,11 @@ const main = {
 
     update : function () {
         const data = {
+            id: $('#id').val(),
             title: $('#title').val(),
             content: $('#content').val()
         };
-        const id = $('#id').val();
+
         const con_check = confirm("수정하시겠습니까?");
         if (con_check == true) {
             if (!data.title || data.title.trim() === "" || !data.content || data.content.trim() === "") {
@@ -71,13 +68,13 @@ const main = {
             } else {
                 $.ajax({
                     type: 'PUT',
-                    url: '/api/posts/' + id,
+                    url: '/api/posts/' + data.id,
                     dataType: 'JSON',
                     contentType: 'application/json; charset=utf-8',
                     data: JSON.stringify(data)
                 }).done(function () {
                     alert("수정되었습니다.");
-                    window.location.href = '/posts/read/' + id;
+                    window.location.href = '/posts/read/' + data.id;
                 }).fail(function (error) {
                     alert(JSON.stringify(error));
                 });
@@ -108,34 +105,9 @@ const main = {
             return false;
         }
     },
-    /* 사용자 */
-/*    join : function () {
-        // alert("user의 userSave 호출됨");
-        const data = {
-            username: $('#username').val(),
-            nickname: $('#nickname').val(),
-            password: $('#password').val(),
-            email: $('#email').val()
-        }
-        // console.log(data);
 
-        $.ajax({
-            type: "POST",
-            url: "/auth/join",
-            dataType: 'JSON',
-            contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify(data)
-
-        }).done(function () {
-            alert("회원가입이 완료되었습니다.");
-            window.location.href = "/auth/login";
-
-        }).fail(function (error) {
-            alert(JSON.stringify(error));
-        });
-    }*/
-
-    modify : function () {
+    /* 사용자 정보수정 */
+    userModify : function () {
         const data = {
             id: $('#id').val(),
             modifiedDate: $('#modifiedDate').val(),
@@ -170,6 +142,33 @@ const main = {
             }).fail(function (error) {
                 alert("이미 사용중인 닉네임 입니다.");
                 $('#nickname').focus();
+                alert(JSON.stringify(error));
+            });
+        }
+    },
+
+    /* 댓글 */
+    commentSave : function () {
+        const data = {
+            postsId: $('#postsId').val(),
+            comment: $('#comment').val()
+        };
+
+        // 공백 및 빈 문자열 체크
+        if (!data.comment || data.comment.trim() === "") {
+            alert("공백 또는 입력하지 않은 부분이 있습니다.");
+            return false;
+        } else {
+            $.ajax({
+                type: 'POST',
+                url: '/api/posts/' + data.postsId + '/comments',
+                dataType: 'JSON',
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(data)
+            }).done(function () {
+                alert('댓글이 등록되었습니다.');
+                window.location.href = '/posts/read/' + data.postsId;
+            }).fail(function (error) {
                 alert(JSON.stringify(error));
             });
         }

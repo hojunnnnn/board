@@ -1,6 +1,7 @@
 package com.coco.board.web.controller;
 
 import com.coco.board.config.auth.LoginUser;
+import com.coco.board.domain.comment.Comment;
 import com.coco.board.web.dto.user.UserSessionDto;
 import com.coco.board.domain.posts.Posts;
 import com.coco.board.service.PostsService;
@@ -15,10 +16,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.List;
+
 /**
  * 화면 연결 Controller
  */
-
 @Controller
 @RequiredArgsConstructor
 public class PostsIndexController {
@@ -31,7 +33,7 @@ public class PostsIndexController {
         Page<Posts> list = postsService.pageList(pageable);
 
         if (user != null) {
-            model.addAttribute("user", user.getNickname());
+            model.addAttribute("user", user);
         }
 
         model.addAttribute("posts", list);
@@ -42,20 +44,29 @@ public class PostsIndexController {
 
         return "index";
     }
-
+    /* 글 작성 */
     @GetMapping("/posts/write")
     public String write(@LoginUser UserSessionDto user, Model model) {
         if (user != null) {
-            model.addAttribute("user", user.getNickname());
+            model.addAttribute("user", user);
         }
         return "posts/posts-write";
     }
 
+    /* 글 상세보기 */
     @GetMapping("/posts/read/{id}")
     public String read(@PathVariable Long id, @LoginUser UserSessionDto user, Model model) {
         PostsResponseDto dto = postsService.findById(id);
+        List<Comment> comments = dto.getComments();
+
+        /* 댓글 관련 */
+        if (comments != null && !comments.isEmpty()) {
+            model.addAttribute("comments", comments);
+        }
+
+        /* 사용자 관련 */
         if (user != null) {
-            model.addAttribute("user", user.getNickname());
+            model.addAttribute("user", user);
 
             /*게시글 작성자 본인인지 확인*/
             if (dto.getUserId().equals(user.getId())) {
@@ -64,7 +75,6 @@ public class PostsIndexController {
         }
         postsService.updateView(id); // views ++
         model.addAttribute("posts", dto);
-
         return "posts/posts-read";
     }
 
@@ -72,7 +82,7 @@ public class PostsIndexController {
     public String update(@PathVariable Long id, @LoginUser UserSessionDto user, Model model) {
         PostsResponseDto dto = postsService.findById(id);
         if (user != null) {
-            model.addAttribute("user", user.getNickname());
+            model.addAttribute("user", user);
         }
         model.addAttribute("posts", dto);
 
@@ -85,7 +95,7 @@ public class PostsIndexController {
         Page<Posts> searchList = postsService.search(keyword, pageable);
 
         if (user != null) {
-            model.addAttribute("user", user.getNickname());
+            model.addAttribute("user", user);
         }
         model.addAttribute("searchList", searchList);
         model.addAttribute("keyword", keyword);
