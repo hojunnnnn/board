@@ -1,5 +1,7 @@
 package com.coco.board.service;
 
+import com.coco.board.domain.comment.Comment;
+import com.coco.board.domain.comment.CommentRepository;
 import com.coco.board.domain.posts.Posts;
 import com.coco.board.domain.posts.PostsRepository;
 import com.coco.board.domain.user.User;
@@ -38,7 +40,7 @@ public class PostsService {
     @Transactional(readOnly = true)
     public PostsResponseDto findById(Long id) {
         Posts posts = postsRepository.findById(id).orElseThrow(() ->
-                new IllegalArgumentException("해당 게시글이 존재하지 않습니다. id=" + id));
+                new IllegalArgumentException("해당 게시글이 존재하지 않습니다. id: " + id));
 
         return new PostsResponseDto(posts);
     }

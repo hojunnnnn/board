@@ -11,6 +11,9 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * 댓글 Service 요청을 위한 DTO 클래스
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

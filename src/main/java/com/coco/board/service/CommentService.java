@@ -8,12 +8,9 @@ import com.coco.board.domain.user.User;
 import com.coco.board.domain.user.UserRepository;
 import com.coco.board.web.dto.comment.CommentRequestDto;
 import com.coco.board.web.dto.comment.CommentResponseDto;
-import com.coco.board.web.dto.posts.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 @Service

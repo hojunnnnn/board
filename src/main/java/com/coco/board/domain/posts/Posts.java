@@ -37,7 +37,6 @@ public class Posts extends TimeEntity {
     private User user;
 
     @OneToMany(mappedBy = "posts", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    @JsonIgnoreProperties({"posts", "user"}) //무한참조 임시차단
     private List<Comment> comments;
 
     /* 게시글 수정 메소드 */

@@ -2,6 +2,7 @@ package com.coco.board.web.controller;
 
 import com.coco.board.config.auth.LoginUser;
 import com.coco.board.domain.comment.Comment;
+import com.coco.board.web.dto.comment.CommentResponseDto;
 import com.coco.board.web.dto.user.UserSessionDto;
 import com.coco.board.domain.posts.Posts;
 import com.coco.board.service.PostsService;
@@ -57,7 +58,7 @@ public class PostsIndexController {
     @GetMapping("/posts/read/{id}")
     public String read(@PathVariable Long id, @LoginUser UserSessionDto user, Model model) {
         PostsResponseDto dto = postsService.findById(id);
-        List<Comment> comments = dto.getComments();
+        List<CommentResponseDto> comments = dto.getComments();
 
         /* 댓글 관련 */
         if (comments != null && !comments.isEmpty()) {
