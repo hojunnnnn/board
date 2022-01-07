@@ -91,10 +91,9 @@ public class UserController {
 
     /* 회원정보 수정 */
     @GetMapping("/modify")
-    public String modify(@LoginUser UserSessionDto userDto, Model model) {
-        if (userDto != null) {
-            model.addAttribute("user", userDto.getNickname());
-            model.addAttribute("userDto", userDto);
+    public String modify(@LoginUser UserSessionDto user, Model model) {
+        if (user != null) {
+            model.addAttribute("user", user);
         }
         return "/user/user-modify";
     }

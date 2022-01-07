@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 /**
  * 댓글 정보를 리턴할 응답(Response) 클래스
@@ -25,7 +26,8 @@ public class CommentResponseDto {
     private String comment;
     private String createdDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm"));
     private String modifiedDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm"));
-    private String user;
+    private String nickname;
+    private Long userId;
     private Long postsId;
 
     /* Entity -> Dto*/
@@ -34,7 +36,8 @@ public class CommentResponseDto {
         this.comment = comment.getComment();
         this.createdDate = comment.getCreatedDate();
         this.modifiedDate = comment.getModifiedDate();
-        this.user = comment.getUser().getNickname();
+        this.nickname = comment.getUser().getNickname();
+        this.userId = comment.getUser().getId();
         this.postsId = comment.getPosts().getId();
     }
 }

@@ -1,0 +1,36 @@
+{{! Comments }}
+<div class="card">
+    <div class="card-header bi bi-chat-dots"> {{#comments.size}}{{comments.size}}{{/comments.size}} Comments</div>
+    {{! 댓글내용 부분 (미완성) }}
+    <ul class="list-group-flush">
+        {{#comments}}
+            <li id="comments-{{id}}" class="list-group-item">
+                <span>
+                    <span style="font-size: small">{{nickname}}</span>
+                    <span style="font-size: xx-small">{{createdDate}}</span>
+                </span>
+                {{#commentWriter}}
+                    {{! 댓글 수정 삭제 Buttons }}
+                    <a type="button" onclick="main.commentWriterCheck({{userId}},{{user.id}})" data-toggle="collapse" data-target=".multi-collapse-{{id}}" class="bi bi-pencil-square"></a>
+                    <a type="button" onclick="main.commentDelete({{postsId}},{{id}},{{userId}},{{user.id}})"
+                       class="bi bi-x-square"></a>
+                {{/commentWriter}}
+                {{! 댓글 내용 보기 }}
+                <p class="collapse multi-collapse-{{id}} show">{{comment}}</p>
+
+                {{! 댓글 내용 수정 }}
+                <form class="collapse multi-collapse-{{id}}">
+                    <input type="hidden" id="id" value="{{id}}">
+                    <input type="hidden" id="postsId" value="{{postsId}}">
+                    <input type="hidden" id="writerUserId" value="{{userId}}">
+                    <input type="hidden" id="sessionUserId" value="{{#user}}{{user.id}}{{/user}}">
+                    <div class="form-group">
+                        <textarea class="form-control" id="comment-content" rows="3">{{comment}}</textarea>
+                    </div>
+                    <button type="button" id="btn-comment-update" class="btn btn-outline-primary bi bi-pencil-square"> 수정</button>
+                </form>
+            </li>
+        {{/comments}}
+    </ul>
+</div>
+<br/>

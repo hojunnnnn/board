@@ -15,6 +15,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Slf4j
 @RequiredArgsConstructor
 @Service
@@ -46,16 +48,14 @@ public class PostsService {
     }
 
     /* UPDATE (dirty checking 영속성 컨텍스트)
-    *  User 객체를 영속화시키고, 영속화된 User 객체를 가져와 데이터를 변경하면
-    * 트랜잭션이 끝날 때 자동으로 DB에 저장해준다. */
+     *  User 객체를 영속화시키고, 영속화된 User 객체를 가져와 데이터를 변경하면
+     * 트랜잭션이 끝날 때 자동으로 DB에 저장해준다. */
     @Transactional
-    public Long update(Long id, PostsRequestDto requestDto) {
+    public void update(Long id, PostsRequestDto requestDto) {
         Posts posts = postsRepository.findById(id).orElseThrow(() ->
                 new IllegalArgumentException("해당 게시글이 존재하지 않습니다. id=" + id));
 
         posts.update(requestDto.getTitle(), requestDto.getContent());
-
-        return id;
     }
 
     /* DELETE */

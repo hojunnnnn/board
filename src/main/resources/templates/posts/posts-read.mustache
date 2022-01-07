@@ -26,47 +26,16 @@
         {{#user}}
             <a href="/" role="button" class="btn btn-info bi bi-arrow-return-left"> 목록</a>
             {{#writer}}
-            <a href="/posts/update/{{id}}" role="button" class="btn btn-primary bi bi-pencil-square"> 수정</a>
+            <a href="/posts/update/{{posts.id}}" role="button" class="btn btn-primary bi bi-pencil-square"> 수정</a>
             <button type="button" onclick="" id="btn-delete" class="btn btn-danger bi bi-trash"> 삭제</button>
             {{/writer}}
         {{/user}}
         {{^user}}
             <a href="/" role="button" class="btn btn-info bi bi-arrow-return-left"> 목록</a>
         {{/user}}
-
         {{! Comments }}
-        <div class="card">
-            <div class="card-header bi bi-chat-dots"> {{#comments.size}}{{comments.size}}{{/comments.size}} Comments</div>
-            {{! 댓글내용 부분 (미완성) }}
-            <ul class="list-group-flush">
-                {{#comments}}
-                    <li class="list-group-item">
-                        <span>
-                            <span style="font-size: small">{{user}}</span>
-                            <span style="font-size: xx-small">{{createdDate}}</span>&nbsp;
-                            <button class="badge bi bi-pencil-square"> 수정</button>
-                            <button class="badge bi bi-trash"> 삭제</button>
-                        </span>
-                        <div>{{comment}}</div>
-                    </li>
-                {{/comments}}
-            </ul>
-        </div>
-        <br/>
-        <div class="card">
-            <div class="card-header bi bi-chat-right-dots"> Write a Comment</div>
-            <form>
-                <input type="hidden" id="postsId" value="{{posts.id}}">
-                <div class="card-body">
-                    <!--<input type="text" class="form-control" id="writer" placeholder="작성자를 입력하세요">-->
-                    <textarea id="comment" class="form-control" rows="4" placeholder="댓글을 입력하세요"></textarea>
-                </div>
-
-                <div class="card-footer">
-                    <button type="button" id="btn-comment-save"class="btn btn-outline-primary bi bi-pencil-square"> 등록</button>
-                </div>
-            </form>
-        </div>
+        {{>comment/list}}
+        {{>comment/form}}
     </div>
 </div>
 {{>layout/footer}}

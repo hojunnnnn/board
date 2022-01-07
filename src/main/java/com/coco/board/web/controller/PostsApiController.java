@@ -38,7 +38,8 @@ public class PostsApiController {
     /* UPDATE */
     @PutMapping("/posts/{id}")
     public ResponseEntity update(@PathVariable Long id, @RequestBody PostsRequestDto requestDto) {
-        return ResponseEntity.ok(postsService.update(id, requestDto));
+        postsService.update(id, requestDto);
+        return ResponseEntity.ok(id);
     }
 
     /* DELETE */

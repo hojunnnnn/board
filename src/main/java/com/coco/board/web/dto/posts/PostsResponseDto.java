@@ -39,11 +39,5 @@ public class PostsResponseDto {
         this.view = posts.getView();
         this.userId = posts.getUser().getId();
         this.comments = posts.getComments().stream().map(CommentResponseDto::new).collect(Collectors.toList());
-        /*
-        *  PostsIndexController에서 사용 > 무한참조 발생
-        *  PostsService의 findById()메서드에서 PostsResponseDto()를 호출하면
-        *  dto변환 생성자에서 posts.getComments() 메서드를 실행하여 comment 엔티티 클래스에 있는 user와 posts정보를 다 불러옴.
-        *  ResponseDto에서 ManyToOne의 List타입을 어떻게 다룰지..
-        * */
     }
 }

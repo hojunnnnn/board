@@ -37,6 +37,7 @@ public class Posts extends TimeEntity {
     private User user;
 
     @OneToMany(mappedBy = "posts", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @OrderBy("id asc") // 댓글 정렬
     private List<Comment> comments;
 
     /* 게시글 수정 메소드 */

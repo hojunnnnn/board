@@ -26,22 +26,7 @@
     <div class="text-right">
         <a href="/posts/write" role="button" class="btn btn-primary bi bi-pencil-fill"> 글쓰기</a>
     </div>
-
     {{! Page }}
-    <div class="pagination justify-content-center">
-        {{#preCheck}}
-            <a href="?page={{previous}}" role="button" class="btn btn-lg bi bi-caret-left-square-fill"></a>
-        {{/preCheck}}
-        {{^preCheck}}
-            <a href="?page={{previous}}" role="button" class="btn btn-lg bi bi-caret-left-square-fill disabled"></a>
-        {{/preCheck}}
-
-        {{#nextCheck}}
-            <a href="?page={{next}}" role="button" class="btn btn-lg bi bi-caret-right-square-fill"></a>
-        {{/nextCheck}}
-        {{^nextCheck}}
-            <a href="?page={{next}}" role="button" class="btn btn-lg bi bi-caret-right-square-fill disabled"></a>
-        {{/nextCheck}}
-    </div>
+    {{>posts/posts-page}}
 </div>
 {{>layout/footer}}
