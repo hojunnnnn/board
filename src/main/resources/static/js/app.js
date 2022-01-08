@@ -223,7 +223,7 @@ const main = {
     },
 
     /** 댓글 삭제 */
-    commentDelete : function (postsId, id, commentWriterId, sessionUserId) {
+    commentDelete : function (postsId, commentId, commentWriterId, sessionUserId) {
 
         // 본인이 작성한 글인지 확인
         if (commentWriterId !== sessionUserId) {
@@ -234,7 +234,7 @@ const main = {
             if (con_check === true) {
                 $.ajax({
                     type: 'DELETE',
-                    url: '/api/posts/' + postsId + '/comments/' + id,
+                    url: '/api/posts/' + postsId + '/comments/' + commentId,
                     dataType: 'JSON',
                 }).done(function () {
                     alert('댓글이 삭제되었습니다.');

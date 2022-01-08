@@ -6,6 +6,7 @@ import com.coco.board.domain.posts.Posts;
 import com.coco.board.domain.posts.PostsRepository;
 import com.coco.board.domain.user.User;
 import com.coco.board.domain.user.UserRepository;
+import com.coco.board.web.dto.comment.CommentResponseDto;
 import com.coco.board.web.dto.posts.PostsRequestDto;
 import com.coco.board.web.dto.posts.PostsResponseDto;
 import lombok.RequiredArgsConstructor;

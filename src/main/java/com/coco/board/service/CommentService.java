@@ -8,9 +8,13 @@ import com.coco.board.domain.user.User;
 import com.coco.board.domain.user.UserRepository;
 import com.coco.board.web.dto.comment.CommentRequestDto;
 import com.coco.board.web.dto.comment.CommentResponseDto;
+import com.coco.board.web.dto.posts.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -35,14 +39,13 @@ public class CommentService {
 
         return comment.getId();
     }
-
     /* READ */
     @Transactional(readOnly = true)
-    public CommentResponseDto findById(Long id) {
-        Comment comment = commentRepository.findById(id).orElseThrow(() ->
-                new IllegalArgumentException("해당 댓글이 존재하지 않습니다. " + id));
-
-        return new CommentResponseDto(comment);
+    public List<CommentResponseDto> findAll(Long id) {
+        Posts posts = postsRepository.findById(id).orElseThrow(() ->
+                new IllegalArgumentException("해당 게시글이 존재하지 않습니다. id: " + id));
+        List<Comment> dto = posts.getComments();
+        return dto.stream().map(CommentResponseDto::new).collect(Collectors.toList());
     }
 
     /* UPDATE */

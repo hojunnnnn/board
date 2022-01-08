@@ -79,15 +79,14 @@ public class PostsIndexController {
             }
 
             /*댓글 작성자 본인인지 확인
-             * stream()의 anyMatch는 list를 순회하며 조건에 부합하는 객체가 한개라도 있으면 true를 리턴
-             * allMatch는 모든 객체가 조건에 부합해야 true를 리턴한다.
-             * 댓글 리스트를 뿌려주면서 부분적으로 true false를 줄 방법이 없을까
-             * 고민해봤지만 방법이 없었다. 그래서 자바스크립트로 후처리를 해줬다.
-             * mustache에는 조건문(Logic-less)을 제공하지 않고 true/false 여부만 판단하기 때문에 항상 최종값만을 넘겨줘야한다.
+             * mustache에는 조건문(Logic-less)을 제공하지 않고 true/false 여부만 판단한다.
+             * 항상 최종값만을 넘겨받기 때문에 부분적으로 true false를 줄 방법이 없었다.
+             * 그래서 자바스크립트로 후처리를 해줬다.
              */
 /*            if (comments.stream().anyMatch(s -> s.getUserId().equals(user.getId()))) {
-                model.addAttribute("commentWriter", true);
+                model.addAttribute("isWriter", true);
             }*/
+
             for (int i = 0; i < comments.size(); i++) {
                 boolean isWriter = comments.get(i).getUserId().equals(user.getId());
                 log.info("isWriter? : " + isWriter);

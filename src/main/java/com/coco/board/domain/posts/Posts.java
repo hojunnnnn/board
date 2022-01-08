@@ -3,7 +3,6 @@ package com.coco.board.domain.posts;
 import com.coco.board.domain.TimeEntity;
 import com.coco.board.domain.comment.Comment;
 import com.coco.board.domain.user.User;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
