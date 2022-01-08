@@ -9,12 +9,12 @@
                     <span style="font-size: small">{{nickname}}</span>
                     <span style="font-size: xx-small">{{createdDate}}</span>
                 </span>
-                {{#commentWriter}}
+                {{#isWriter}}
                     {{! 댓글 수정 삭제 Buttons }}
-                    <a type="button" onclick="main.commentWriterCheck({{userId}},{{user.id}})" data-toggle="collapse" data-target=".multi-collapse-{{id}}" class="bi bi-pencil-square"></a>
+                    <a type="button" data-toggle="collapse" data-target=".multi-collapse-{{id}}" class="bi bi-pencil-square"></a>
                     <a type="button" onclick="main.commentDelete({{postsId}},{{id}},{{userId}},{{user.id}})"
                        class="bi bi-x-square"></a>
-                {{/commentWriter}}
+                {{/isWriter}}
                 {{! 댓글 내용 보기 }}
                 <p class="collapse multi-collapse-{{id}} show">{{comment}}</p>
 

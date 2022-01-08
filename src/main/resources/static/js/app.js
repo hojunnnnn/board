@@ -185,17 +185,6 @@ const main = {
             });
         }
     },
-
-    /** 댓글 수정시 본인 검증*/
-/*    commentWriterCheck: function (writerUserId, sessionUserId) {
-        console.log("commentWriterID : " + writerUserId);
-        console.log("sessionUserID : " + sessionUserId);
-        if (writerUserId !== sessionUserId) {
-            /!*$('#comment-content').prop('readonly', true);*!/
-            alert("본인이 작성한 댓글만 수정 가능합니다."); // 알림만 뜨고 수정 가능함. 댓글 readonly는 해당 컨텐츠에 첫번째 댓글로 되는듯
-            return false;
-        }
-    }, */
     /** 댓글 수정 */
     commentUpdate : function (form) {
         const data = {
@@ -207,11 +196,12 @@ const main = {
         }
         console.log("commentWriterID : " + data.writerUserId);
         console.log("sessionUserID : " + data.sessionUserId);
+
         if (data.writerUserId !== data.sessionUserId) {
-            $(data.comment).prop('readonly', true);
-            alert("본인이 작성한 댓글만 수정 가능합니다."); // 댓글작성후 수정시 알림뜨고 작성안됨. 댓글 readonly도 안됨
+            alert("본인이 작성한 댓글만 수정 가능합니다.");
             return false;
         }
+
         if (!data.comment || data.comment.trim() === "") {
             alert("공백 또는 입력하지 않은 부분이 있습니다.");
             return false;
