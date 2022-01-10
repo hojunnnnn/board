@@ -1,7 +1,7 @@
 package com.coco.board.web.controller;
 
 import com.coco.board.service.UserService;
-import com.coco.board.web.dto.user.UserRequestDto;
+import com.coco.board.web.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +24,7 @@ public class UserApiController {
     private final AuthenticationManager authenticationManager;
 
     @PutMapping("/user")
-    public ResponseEntity<String> modify(@RequestBody UserRequestDto dto) {
+    public ResponseEntity<String> modify(@RequestBody UserDto.UserRequestDto dto) {
         userService.modify(dto);
 
         /* 변경된 세션 등록 */

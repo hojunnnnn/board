@@ -5,7 +5,7 @@ import com.coco.board.domain.user.Role;
 import com.coco.board.domain.user.User;
 import com.coco.board.domain.user.UserRepository;
 import com.coco.board.service.PostsService;
-import com.coco.board.web.dto.posts.PostsRequestDto;
+import com.coco.board.web.dto.PostsDto;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -33,7 +33,7 @@ public class PostsServiceTest {
     public void 게시글_생성() {
         User user = User.builder().username("coco").nickname("coco").email("coco@coco.co").role(Role.USER).build();
 
-        PostsRequestDto posts = PostsRequestDto.builder()
+        PostsDto.PostsRequestDto posts = PostsDto.PostsRequestDto.builder()
                 .title("Test Title")
                 .writer(user.getNickname())
                 .content("Test Content")
@@ -41,7 +41,7 @@ public class PostsServiceTest {
                 .user(user)
                 .build();
 
-        postsService.save(user.getNickname(), posts);
+        postsService.save(posts, user.getNickname());
 
         log.info(posts);
     }

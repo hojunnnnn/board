@@ -1,11 +1,11 @@
 package com.coco.board.web.controller;
 
 import com.coco.board.config.auth.LoginUser;
-import com.coco.board.web.dto.comment.CommentResponseDto;
-import com.coco.board.web.dto.user.UserSessionDto;
+import com.coco.board.web.dto.CommentDto;
+import com.coco.board.web.dto.PostsDto;
+import com.coco.board.web.dto.UserDto;
 import com.coco.board.domain.posts.Posts;
 import com.coco.board.service.PostsService;
-import com.coco.board.web.dto.posts.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -31,7 +31,7 @@ public class PostsIndexController {
 
     @GetMapping("/")                 /* default page = 0, size = 10  */
     public String index(Model model, @PageableDefault(sort = "id", direction = Sort.Direction.DESC)
-            Pageable pageable, @LoginUser UserSessionDto user) {
+            Pageable pageable, @LoginUser UserDto.UserSessionDto user) {
         Page<Posts> list = postsService.pageList(pageable);
 
         if (user != null) {
@@ -41,14 +41,14 @@ public class PostsIndexController {
         model.addAttribute("posts", list);
         model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
         model.addAttribute("next", pageable.next().getPageNumber());
-        model.addAttribute("nextCheck", list.hasNext());
-        model.addAttribute("preCheck", list.hasPrevious());
+        model.addAttribute("hasNext", list.hasNext());
+        model.addAttribute("hasPrev", list.hasPrevious());
 
         return "index";
     }
     /* 글 작성 */
     @GetMapping("/posts/write")
-    public String write(@LoginUser UserSessionDto user, Model model) {
+    public String write(@LoginUser UserDto.UserSessionDto user, Model model) {
         if (user != null) {
             model.addAttribute("user", user);
         }
@@ -57,9 +57,9 @@ public class PostsIndexController {
 
     /* 글 상세보기 */
     @GetMapping("/posts/read/{id}")
-    public String read(@PathVariable Long id, @LoginUser UserSessionDto user, Model model) {
-        PostsResponseDto dto = postsService.findById(id);
-        List<CommentResponseDto> comments = dto.getComments();
+    public String read(@PathVariable Long id, @LoginUser UserDto.UserSessionDto user, Model model) {
+        PostsDto.PostsResponseDto dto = postsService.findById(id);
+        List<CommentDto.CommentResponseDto> comments = dto.getComments();
 
         /* 댓글 관련 */
         if (comments != null && !comments.isEmpty()) {
@@ -100,8 +100,8 @@ public class PostsIndexController {
     }
 
     @GetMapping("/posts/update/{id}")
-    public String update(@PathVariable Long id, @LoginUser UserSessionDto user, Model model) {
-        PostsResponseDto dto = postsService.findById(id);
+    public String update(@PathVariable Long id, @LoginUser UserDto.UserSessionDto user, Model model) {
+        PostsDto.PostsResponseDto dto = postsService.findById(id);
         if (user != null) {
             model.addAttribute("user", user);
         }
@@ -112,7 +112,7 @@ public class PostsIndexController {
 
     @GetMapping("/posts/search")
     public String search(String keyword, Model model, @PageableDefault(sort = "id", direction = Sort.Direction.DESC)
-            Pageable pageable, @LoginUser UserSessionDto user) {
+            Pageable pageable, @LoginUser UserDto.UserSessionDto user) {
         Page<Posts> searchList = postsService.search(keyword, pageable);
 
         if (user != null) {
@@ -122,8 +122,8 @@ public class PostsIndexController {
         model.addAttribute("keyword", keyword);
         model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
         model.addAttribute("next", pageable.next().getPageNumber());
-        model.addAttribute("nextCheck", searchList.hasNext());
-        model.addAttribute("preCheck", searchList.hasPrevious());
+        model.addAttribute("hasNext", searchList.hasNext());
+        model.addAttribute("hasPrev", searchList.hasPrevious());
 
         return "posts/posts-search";
     }

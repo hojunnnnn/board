@@ -1,15 +1,15 @@
 <div class="pagination justify-content-center">
-    {{#preCheck}}
+    {{#hasPrev}}
         <a href="?page={{previous}}" role="button" class="btn btn-lg bi bi-caret-left-square-fill"></a>
-    {{/preCheck}}
-    {{^preCheck}}
+    {{/hasPrev}}
+    {{^hasPrev}}
         <a href="?page={{previous}}" role="button" class="btn btn-lg bi bi-caret-left-square-fill disabled"></a>
-    {{/preCheck}}
+    {{/hasPrev}}
 
-    {{#nextCheck}}
+    {{#hasNext}}
         <a href="?page={{next}}" role="button" class="btn btn-lg bi bi-caret-right-square-fill"></a>
-    {{/nextCheck}}
-    {{^nextCheck}}
+    {{/hasNext}}
+    {{^hasNext}}
         <a href="?page={{next}}" role="button" class="btn btn-lg bi bi-caret-right-square-fill disabled"></a>
-    {{/nextCheck}}
+    {{/hasNext}}
 </div>

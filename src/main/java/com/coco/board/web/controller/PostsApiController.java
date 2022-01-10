@@ -2,14 +2,10 @@ package com.coco.board.web.controller;
 
 import com.coco.board.config.auth.LoginUser;
 import com.coco.board.service.PostsService;
-import com.coco.board.web.dto.comment.CommentRequestDto;
-import com.coco.board.web.dto.posts.PostsRequestDto;
-import com.coco.board.web.dto.posts.PostsResponseDto;
-import com.coco.board.web.dto.user.UserSessionDto;
+import com.coco.board.web.dto.PostsDto;
+import com.coco.board.web.dto.UserDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -25,20 +21,20 @@ public class PostsApiController {
 
     /* CREATE */
     @PostMapping("/posts")
-    public ResponseEntity save(@RequestBody PostsRequestDto dto, @LoginUser UserSessionDto userSessionDto) {
-        return ResponseEntity.ok(postsService.save(userSessionDto.getNickname(), dto));
+    public ResponseEntity save(@RequestBody PostsDto.PostsRequestDto dto, @LoginUser UserDto.UserSessionDto userSessionDto) {
+        return ResponseEntity.ok(postsService.save(dto, userSessionDto.getNickname()));
     }
 
     /* READ */
     @GetMapping("/posts/{id}")
-    public PostsResponseDto read(@PathVariable Long id) {
-        return postsService.findById(id);
+    public ResponseEntity read(@PathVariable Long id) {
+        return ResponseEntity.ok(postsService.findById(id));
     }
 
     /* UPDATE */
     @PutMapping("/posts/{id}")
-    public ResponseEntity update(@PathVariable Long id, @RequestBody PostsRequestDto requestDto) {
-        postsService.update(id, requestDto);
+    public ResponseEntity update(@PathVariable Long id, @RequestBody PostsDto.PostsRequestDto dto) {
+        postsService.update(id, dto);
         return ResponseEntity.ok(id);
     }
 

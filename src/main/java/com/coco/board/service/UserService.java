@@ -2,12 +2,8 @@ package com.coco.board.service;
 
 import com.coco.board.domain.user.User;
 import com.coco.board.domain.user.UserRepository;
-import com.coco.board.web.dto.user.UserRequestDto;
+import com.coco.board.web.dto.UserDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,7 +23,7 @@ public class UserService {
 
     /* 회원가입 */
     @Transactional
-    public Long userJoin(UserRequestDto dto) {
+    public Long userJoin(UserDto.UserRequestDto dto) {
 
         dto.setPassword(encoder.encode(dto.getPassword()));
 
@@ -49,7 +45,7 @@ public class UserService {
 
     /* 회원수정 (dirty checking) */
     @Transactional
-    public Long modify(UserRequestDto dto) {
+    public Long modify(UserDto.UserRequestDto dto) {
         User user = userRepository.findById(dto.toEntity().getId()).orElseThrow(() ->
                 new IllegalArgumentException("해당 회원이 존재하지 않습니다."));
 

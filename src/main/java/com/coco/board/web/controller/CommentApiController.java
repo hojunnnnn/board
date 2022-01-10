@@ -1,11 +1,9 @@
 package com.coco.board.web.controller;
 
 import com.coco.board.config.auth.LoginUser;
-import com.coco.board.domain.comment.Comment;
 import com.coco.board.service.CommentService;
-import com.coco.board.web.dto.comment.CommentRequestDto;
-import com.coco.board.web.dto.comment.CommentResponseDto;
-import com.coco.board.web.dto.user.UserSessionDto;
+import com.coco.board.web.dto.CommentDto;
+import com.coco.board.web.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,20 +19,20 @@ public class CommentApiController {
 
     /* CREATE */
     @PostMapping("/posts/{id}/comments")
-    public ResponseEntity save(@PathVariable Long id, @RequestBody CommentRequestDto dto,
-                                      @LoginUser UserSessionDto userSessionDto) {
+    public ResponseEntity save(@PathVariable Long id, @RequestBody CommentDto.CommentRequestDto dto,
+                               @LoginUser UserDto.UserSessionDto userSessionDto) {
         return ResponseEntity.ok(commentService.save(id, userSessionDto.getNickname(), dto));
     }
 
     /* READ */
     @GetMapping("/posts/{id}/comments")
-    public List<CommentResponseDto> read(@PathVariable Long id) {
+    public List<CommentDto.CommentResponseDto> read(@PathVariable Long id) {
         return commentService.findAll(id);
     }
 
     /* UPDATE */
     @PutMapping({"/posts/{id}/comments/{id}"})
-    public ResponseEntity update(@PathVariable Long id, @RequestBody CommentRequestDto dto) {
+    public ResponseEntity update(@PathVariable Long id, @RequestBody CommentDto.CommentRequestDto dto) {
         commentService.update(id, dto);
         return ResponseEntity.ok(id);
     }

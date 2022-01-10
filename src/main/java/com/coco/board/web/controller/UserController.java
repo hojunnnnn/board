@@ -5,8 +5,7 @@ import com.coco.board.validator.EmailCheckValidator;
 import com.coco.board.validator.NicknameCheckValidator;
 import com.coco.board.validator.UsernameCheckValidator;
 import com.coco.board.service.UserService;
-import com.coco.board.web.dto.user.UserRequestDto;
-import com.coco.board.web.dto.user.UserSessionDto;
+import com.coco.board.web.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -52,10 +51,10 @@ public class UserController {
 
     /* 회원가입 */
     @PostMapping("/auth/joinProc")
-    public String joinProc(@Valid UserRequestDto userDto, Errors errors, Model model) {
+    public String joinProc(@Valid UserDto.UserRequestDto dto, Errors errors, Model model) {
         if (errors.hasErrors()) {
              /* 회원가입 실패시 입력 데이터 값을 유지 */
-            model.addAttribute("userDto", userDto);
+            model.addAttribute("userDto", dto);
 
             /* 유효성 통과 못한 필드와 메시지를 핸들링 */
             Map<String, String> validatorResult = userService.validateHandling(errors);
@@ -65,7 +64,7 @@ public class UserController {
             /* 회원가입 페이지로 다시 리턴 */
             return "/user/user-join";
         }
-        userService.userJoin(userDto);
+        userService.userJoin(dto);
         return "redirect:/auth/login";
     }
 
@@ -91,7 +90,7 @@ public class UserController {
 
     /* 회원정보 수정 */
     @GetMapping("/modify")
-    public String modify(@LoginUser UserSessionDto user, Model model) {
+    public String modify(@LoginUser UserDto.UserSessionDto user, Model model) {
         if (user != null) {
             model.addAttribute("user", user);
         }

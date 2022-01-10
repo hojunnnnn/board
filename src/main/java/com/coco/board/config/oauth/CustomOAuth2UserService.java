@@ -2,7 +2,7 @@ package com.coco.board.config.oauth;
 
 import com.coco.board.domain.user.User;
 import com.coco.board.domain.user.UserRepository;
-import com.coco.board.web.dto.user.UserSessionDto;
+import com.coco.board.web.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -53,7 +53,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         User user = saveOrUpdate(attributes);
 
         /* 세션 정보를 저장하는 직렬화된 dto 클래스 */
-        session.setAttribute("user", new UserSessionDto(user));
+        session.setAttribute("user", new UserDto.UserSessionDto(user));
 
         return new DefaultOAuth2User(
                 Collections.singleton(new SimpleGrantedAuthority(user.getRoleValue())),

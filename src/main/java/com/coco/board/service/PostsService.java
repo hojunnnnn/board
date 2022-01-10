@@ -1,22 +1,16 @@
 package com.coco.board.service;
 
-import com.coco.board.domain.comment.Comment;
-import com.coco.board.domain.comment.CommentRepository;
 import com.coco.board.domain.posts.Posts;
 import com.coco.board.domain.posts.PostsRepository;
 import com.coco.board.domain.user.User;
 import com.coco.board.domain.user.UserRepository;
-import com.coco.board.web.dto.comment.CommentResponseDto;
-import com.coco.board.web.dto.posts.PostsRequestDto;
-import com.coco.board.web.dto.posts.PostsResponseDto;
+import com.coco.board.web.dto.PostsDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -28,7 +22,7 @@ public class PostsService {
 
     /* CREATE */
     @Transactional
-    public Long save(String nickname, PostsRequestDto dto) {
+    public Long save(PostsDto.PostsRequestDto dto, String nickname) {
         /* User 정보를 가져와 dto에 담아준다. */
         User user = userRepository.findByNickname(nickname);
         dto.setUser(user);
@@ -41,22 +35,22 @@ public class PostsService {
 
     /* READ 게시글 리스트 조회 readOnly 속성으로 조회속도 개선 */
     @Transactional(readOnly = true)
-    public PostsResponseDto findById(Long id) {
+    public PostsDto.PostsResponseDto findById(Long id) {
         Posts posts = postsRepository.findById(id).orElseThrow(() ->
                 new IllegalArgumentException("해당 게시글이 존재하지 않습니다. id: " + id));
 
-        return new PostsResponseDto(posts);
+        return new PostsDto.PostsResponseDto(posts);
     }
 
     /* UPDATE (dirty checking 영속성 컨텍스트)
      *  User 객체를 영속화시키고, 영속화된 User 객체를 가져와 데이터를 변경하면
      * 트랜잭션이 끝날 때 자동으로 DB에 저장해준다. */
     @Transactional
-    public void update(Long id, PostsRequestDto requestDto) {
+    public void update(Long id, PostsDto.PostsRequestDto dto) {
         Posts posts = postsRepository.findById(id).orElseThrow(() ->
                 new IllegalArgumentException("해당 게시글이 존재하지 않습니다. id=" + id));
 
-        posts.update(requestDto.getTitle(), requestDto.getContent());
+        posts.update(dto.getTitle(), dto.getContent());
     }
 
     /* DELETE */
@@ -85,7 +79,6 @@ public class PostsService {
     @Transactional(readOnly = true)
     public Page<Posts> search(String keyword, Pageable pageable) {
         Page<Posts> postsList = postsRepository.findByTitleContaining(keyword, pageable);
-
         return postsList;
     }
 }
