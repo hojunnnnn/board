@@ -18,13 +18,13 @@
 
 - 마치며
   - 프로젝트 보완사항
-  - 회고
-___
+  - 후기
+
 ## 들어가며
 1. **프로젝트 소개**
 
 프로젝트를 시작하게 된 계기는 웹 프로그래밍의 기본 소양이라 할 수 있는 게시판을 만들어보며 배우고자 시작하게되었습니다.   
-독학으로 관련 기술들을 학습한 이후 제작한 개인 프로젝트이기 때문에 자신은 없지만 개인적인 만족감을 가지고 있는 프로젝트입니다.
+독학으로 관련 기술들을 학습한 이후 제작한 개인 프로젝트이기 때문에 개인적인 만족감을 가지고 있는 프로젝트입니다.
 
 2. **프로젝트 기능**
 
@@ -47,6 +47,10 @@ ___
 
 ## 구조 및 설계   
 1. **패키지 구조**
+<details>
+<summary>보기</summary>  
+
+
 ```
 📦src
  ┣ 📂main
@@ -66,6 +70,12 @@ ___
  ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜OAuthAttributes.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜SecurityConfig.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜WebConfig.java
+ ┃ ┃ ┃ ┃ ┃ ┣ 📂controller
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CommentApiController.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜PostsApiController.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜PostsIndexController.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜UserApiController.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜UserController.java
  ┃ ┃ ┃ ┃ ┃ ┣ 📂domain
  ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂comment
  ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜Comment.java
@@ -88,12 +98,6 @@ ___
  ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜NicknameCheckValidator.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜UsernameCheckValidator.java
  ┃ ┃ ┃ ┃ ┃ ┣ 📂web
- ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂controller
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CommentApiController.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜PostsApiController.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜PostsIndexController.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜UserApiController.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜UserController.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂dto
  ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CommentDto.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜PostsDto.java
@@ -134,29 +138,31 @@ ___
  ┃ ┃ ┃ ┃ ┗ 📂board
  ┃ ┃ ┃ ┃ ┃ ┣ 📂config
  ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜SecurityConfigTest.java
+ ┃ ┃ ┃ ┃ ┃ ┣ 📂controller
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜PostsApiControllerTest.java
  ┃ ┃ ┃ ┃ ┃ ┣ 📂domain
- ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂comment
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜CommentRepositoryTest.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂posts
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜PostsRepositoryTest.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂user
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜UserRepositoryTest.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CommentRepositoryTest.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜PostsRepositoryTest.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜UserRepositoryTest.java
  ┃ ┃ ┃ ┃ ┃ ┣ 📂service
- ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂posts
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜PostsServiceTest.java
- ┃ ┃ ┃ ┃ ┃ ┣ 📂web
- ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂controller
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜PostsApiControllerTest.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜PostsServiceTest.java
  ┃ ┃ ┃ ┃ ┃ ┗ 📜BoardApplicationTests.java
  ```
- 
+  
+ </details>
+  
  2. **DB 설계**
 
 ![erd 3차 2022-01-03](https://user-images.githubusercontent.com/59757689/148910882-2ac9ec57-c339-4bef-a6d5-13025a8d9ac9.PNG)   
+<details>
+  <summary>테이블 설계 자세히 보기</summary>   
+  
 ![posts 테이블 db 설계](https://user-images.githubusercontent.com/59757689/148910938-c6a99c8e-fefc-467b-a2af-a68a00e01a11.PNG)   
-![user 테이블 db 설계](https://user-images.githubusercontent.com/59757689/148910944-280c26c6-0fdf-4a12-8547-16688127b1ff.PNG)   
+![user 테이블 db 설계](https://user-images.githubusercontent.com/59757689/149279956-b0a184da-9b19-4bcf-9ce8-6c001ef81f1d.PNG) 
 ![comment 테이블 db 설계](https://user-images.githubusercontent.com/59757689/148910946-02280553-97ce-4d82-bbda-9c911ea89bd4.PNG)   
-created_date와 modified_date는 날짜 포맷을 적용해주어 datetime > varchar로 변경되었습니다.
+created_date와 modified_date는 날짜 포맷을 적용해주기 위해 datetime > varchar로 변경했습니다.   
+  
+</details>
 
 3. **API 설계**
 
@@ -180,3 +186,37 @@ created_date와 modified_date는 날짜 포맷을 적용해주어 datetime > var
 - <a href="https://dev-coco.tistory.com/132" target="_blank">게시판 댓글 작성 및 조회 구현</a>
 - <a href="https://dev-coco.tistory.com/134" target="_blank">게시판 댓글 수정 및 삭제 구현</a>
 - <a href="https://dev-coco.tistory.com/136" target="_blank">게시판 댓글 작성자만 수정, 삭제 가능하게 하기</a>
+- <a href="https://dev-coco.tistory.com/136" target="_blank">많은 Dto Class를 Inner Class로 한번에 관리하기</a>
+
+## 마치며
+1. **프로젝트 보완사항**
+
+프로젝트 초기에 구상한 기능은 기본적인 CRUD 즉, 게시판에 올라오는 게시글을 대상으로 Create, Read, Update, Delete가 가능한 게시판이었습니다.   
+그러나 게시판 CRUD 기능이 완성되어 갈 때 쯤, 아쉬운 부분이 계속해서 생겨 몇몇 기능들을 추가하게 되었습니다.   
+Mustache를 템플릿 엔진으로 사용하고 있었는데, Mustache는 단순히 화면에 데이터를 렌더링 하는 엔진이기 때문에   
+문법은 단순했고 Logic-less의 벽이 있었습니다.   
+그래서 데이터를 렌더링 하기 전 서버에서 전처리를 하거나 화면에 표시된 후에 자바스크립트로 후처리를 해줬지만   
+보완해야 할 부분이 아직 몇 개 남아있다고 생각합니다.   
+그래서 추후에 브랜치를 나눠 Mustache에서 Thymeleaf로 조금씩 바꾸며 프로젝트 완성도를 높일 계획에 있습니다.
+
+
+2. **후기**
+
+혼자 독학하며 처음 만들어본 프로젝트이기 때문에, 공부한 내용을 사용해보는 설렘만큼이나 부족한 부분에 대한 아쉬움도 많이 남았습니다.     
+효율적인 설계를 위해 고민하고 찾아보며 실제로 많이 공부할 수 있었던 부분도 많았습니다.   
+또, 전체 MVC 설계에서 Controller, Service, Repository의 역할에 대한 구분도 명확하게 하고 싶다는 생각이 들었습니다.   
+책이나 블로그, 강의로 공부한 예제에서는 납득됐던 부분이 실제로 코드를 짜면서 다양한 애로사항을 만나게 되었고   
+'이 로직은 이 단계에서 처리하는게 맞는가', '각 레이어간 데이터 전달은 무조건 DTO로 하는게 맞는가' 등   
+여러 고민에 빠져 헤맨적도 있었지만, 다행히 결과는 대부분 최선을 찾았었던 것 같습니다.   
+그리고 과연 내가 만든 코드를 남에게 보여줬을 때, 누군가 코드의 근거를 물어본다면   
+자신 있게 나의 생각을 잘 얘기할 수 있을까 라는 생각을 굉장히 많이 하게 되었습니다.   
+그래서 하나를 구현할 때 '이렇게 구현 하는 것이 과연 최선인가', '더 나은 Best Practice는 없을까'   
+스스로 의심하고 고민하게 되는 습관을 가지게 되었습니다.
+
+두 번째로 기술적인 부분에서 더 공부하고 싶은 '방향'을 찾을 수 있었습니다.   
+이번 프로젝트는 저에게 좋은 경험이 되었고, 저의 부족한 부분을 스스로 알 수 있는 좋은 계기가 되었습니다.   
+부족한 부분에 대해 스스로 인지하고 있고, 더 깊게 공부하며 스스로 발전할 수 있는 '방향'을 다시한번 찾을 수 있게 되었습니다.   
+이를 통해 더 나은 웹 어플리케이션을 만들 수 있을 것 같다는 자신감도 생겼습니다.
+
+끝까지 읽어주셔서 감사합니다.
+
