@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 /**
  * REST API Controller
  */
-
 @RequestMapping("/api")
 @RequiredArgsConstructor
 @RestController
@@ -21,7 +20,7 @@ public class PostsApiController {
 
     /* CREATE */
     @PostMapping("/posts")
-    public ResponseEntity save(@RequestBody PostsDto.PostsRequestDto dto, @LoginUser UserDto.UserSessionDto userSessionDto) {
+    public ResponseEntity save(@RequestBody PostsDto.Request dto, @LoginUser UserDto.Response userSessionDto) {
         return ResponseEntity.ok(postsService.save(dto, userSessionDto.getNickname()));
     }
 
@@ -33,7 +32,7 @@ public class PostsApiController {
 
     /* UPDATE */
     @PutMapping("/posts/{id}")
-    public ResponseEntity update(@PathVariable Long id, @RequestBody PostsDto.PostsRequestDto dto) {
+    public ResponseEntity update(@PathVariable Long id, @RequestBody PostsDto.Request dto) {
         postsService.update(id, dto);
         return ResponseEntity.ok(id);
     }

@@ -31,7 +31,7 @@ public class PostsIndexController {
 
     @GetMapping("/")                 /* default page = 0, size = 10  */
     public String index(Model model, @PageableDefault(sort = "id", direction = Sort.Direction.DESC)
-            Pageable pageable, @LoginUser UserDto.UserSessionDto user) {
+            Pageable pageable, @LoginUser UserDto.Response user) {
         Page<Posts> list = postsService.pageList(pageable);
 
         if (user != null) {
@@ -48,7 +48,7 @@ public class PostsIndexController {
     }
     /* 글 작성 */
     @GetMapping("/posts/write")
-    public String write(@LoginUser UserDto.UserSessionDto user, Model model) {
+    public String write(@LoginUser UserDto.Response user, Model model) {
         if (user != null) {
             model.addAttribute("user", user);
         }
@@ -57,9 +57,10 @@ public class PostsIndexController {
 
     /* 글 상세보기 */
     @GetMapping("/posts/read/{id}")
-    public String read(@PathVariable Long id, @LoginUser UserDto.UserSessionDto user, Model model) {
-        PostsDto.PostsResponseDto dto = postsService.findById(id);
-        List<CommentDto.CommentResponseDto> comments = dto.getComments();
+    public String read(@PathVariable Long id, @LoginUser UserDto.Response user, Model model) {
+        PostsDto.Response dto = postsService.findById(id);
+        List<CommentDto.Response> comments = dto.getComments();
+
 
         /* 댓글 관련 */
         if (comments != null && !comments.isEmpty()) {
@@ -100,8 +101,8 @@ public class PostsIndexController {
     }
 
     @GetMapping("/posts/update/{id}")
-    public String update(@PathVariable Long id, @LoginUser UserDto.UserSessionDto user, Model model) {
-        PostsDto.PostsResponseDto dto = postsService.findById(id);
+    public String update(@PathVariable Long id, @LoginUser UserDto.Response user, Model model) {
+        PostsDto.Response dto = postsService.findById(id);
         if (user != null) {
             model.addAttribute("user", user);
         }
@@ -112,7 +113,7 @@ public class PostsIndexController {
 
     @GetMapping("/posts/search")
     public String search(String keyword, Model model, @PageableDefault(sort = "id", direction = Sort.Direction.DESC)
-            Pageable pageable, @LoginUser UserDto.UserSessionDto user) {
+            Pageable pageable, @LoginUser UserDto.Response user) {
         Page<Posts> searchList = postsService.search(keyword, pageable);
 
         if (user != null) {

@@ -18,7 +18,7 @@ public class CommentDto {
     @AllArgsConstructor
     @NoArgsConstructor
     @Builder
-    public static class CommentRequestDto {
+    public static class Request {
         private Long id;
         private String comment;
         private String createdDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm"));
@@ -47,7 +47,7 @@ public class CommentDto {
      */
     @RequiredArgsConstructor
     @Getter
-    public static class CommentResponseDto {
+    public static class Response {
         private Long id;
         private String comment;
         private String createdDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm"));
@@ -56,7 +56,7 @@ public class CommentDto {
         private Long userId;
         private Long postsId;
         /* Entity -> Dto*/
-        public CommentResponseDto(Comment comment) {
+        public Response(Comment comment) {
             this.id = comment.getId();
             this.comment = comment.getComment();
             this.createdDate = comment.getCreatedDate();

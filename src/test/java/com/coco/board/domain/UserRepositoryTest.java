@@ -1,5 +1,8 @@
-package com.coco.board.domain.user;
+package com.coco.board.domain;
 
+import com.coco.board.domain.user.Role;
+import com.coco.board.domain.user.User;
+import com.coco.board.domain.user.UserRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

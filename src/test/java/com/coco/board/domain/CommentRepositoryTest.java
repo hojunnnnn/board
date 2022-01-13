@@ -1,5 +1,7 @@
-package com.coco.board.domain.comment;
+package com.coco.board.domain;
 
+import com.coco.board.domain.comment.Comment;
+import com.coco.board.domain.comment.CommentRepository;
 import com.coco.board.domain.posts.Posts;
 import com.coco.board.domain.user.User;
 import org.junit.jupiter.api.Test;

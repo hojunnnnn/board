@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * REST API Controller
+ */
 @RequiredArgsConstructor
 @RequestMapping("/api")
 @RestController
@@ -24,7 +27,7 @@ public class UserApiController {
     private final AuthenticationManager authenticationManager;
 
     @PutMapping("/user")
-    public ResponseEntity<String> modify(@RequestBody UserDto.UserRequestDto dto) {
+    public ResponseEntity<String> modify(@RequestBody UserDto.Request dto) {
         userService.modify(dto);
 
         /* 변경된 세션 등록 */

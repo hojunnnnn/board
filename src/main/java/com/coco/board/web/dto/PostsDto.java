@@ -17,7 +17,7 @@ public class PostsDto {
     @AllArgsConstructor
     @NoArgsConstructor
     @Builder
-    public static class PostsRequestDto {
+    public static class Request {
         private Long id;
         private String title;
         private String writer;
@@ -46,7 +46,7 @@ public class PostsDto {
      * 별도의 전달 객체를 활용해 연관관계를 맺은 엔티티간의 무한참조를 방지
      */
     @Getter
-    public static class PostsResponseDto {
+    public static class Response {
         private Long id;
         private String title;
         private String writer;
@@ -54,10 +54,10 @@ public class PostsDto {
         private String createdDate, modifiedDate;
         private int view;
         private Long userId;
-        private List<CommentDto.CommentResponseDto> comments;
+        private List<CommentDto.Response> comments;
 
         /* Entity -> Dto*/
-        public PostsResponseDto(Posts posts) {
+        public Response(Posts posts) {
             this.id = posts.getId();
             this.title = posts.getTitle();
             this.writer = posts.getWriter();
@@ -66,7 +66,7 @@ public class PostsDto {
             this.modifiedDate = posts.getModifiedDate();
             this.view = posts.getView();
             this.userId = posts.getUser().getId();
-            this.comments = posts.getComments().stream().map(CommentDto.CommentResponseDto::new).collect(Collectors.toList());
+            this.comments = posts.getComments().stream().map(CommentDto.Response::new).collect(Collectors.toList());
         }
     }
 

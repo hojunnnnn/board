@@ -22,7 +22,7 @@ public class PostsService {
 
     /* CREATE */
     @Transactional
-    public Long save(PostsDto.PostsRequestDto dto, String nickname) {
+    public Long save(PostsDto.Request dto, String nickname) {
         /* User 정보를 가져와 dto에 담아준다. */
         User user = userRepository.findByNickname(nickname);
         dto.setUser(user);
@@ -35,18 +35,18 @@ public class PostsService {
 
     /* READ 게시글 리스트 조회 readOnly 속성으로 조회속도 개선 */
     @Transactional(readOnly = true)
-    public PostsDto.PostsResponseDto findById(Long id) {
+    public PostsDto.Response findById(Long id) {
         Posts posts = postsRepository.findById(id).orElseThrow(() ->
                 new IllegalArgumentException("해당 게시글이 존재하지 않습니다. id: " + id));
 
-        return new PostsDto.PostsResponseDto(posts);
+        return new PostsDto.Response(posts);
     }
 
     /* UPDATE (dirty checking 영속성 컨텍스트)
      *  User 객체를 영속화시키고, 영속화된 User 객체를 가져와 데이터를 변경하면
      * 트랜잭션이 끝날 때 자동으로 DB에 저장해준다. */
     @Transactional
-    public void update(Long id, PostsDto.PostsRequestDto dto) {
+    public void update(Long id, PostsDto.Request dto) {
         Posts posts = postsRepository.findById(id).orElseThrow(() ->
                 new IllegalArgumentException("해당 게시글이 존재하지 않습니다. id=" + id));
 

@@ -5,7 +5,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 /**
- * 중복검사 유효성 검증을 위해 Validator를 구현한 클래스
+ * 중복검사 유효성 검증을 위해 Validator를 구현한 추상 클래스
  */
 @Slf4j
 public abstract class AbstractValidator<T> implements Validator {

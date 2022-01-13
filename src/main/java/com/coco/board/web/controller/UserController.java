@@ -51,7 +51,7 @@ public class UserController {
 
     /* 회원가입 */
     @PostMapping("/auth/joinProc")
-    public String joinProc(@Valid UserDto.UserRequestDto dto, Errors errors, Model model) {
+    public String joinProc(@Valid UserDto.Request dto, Errors errors, Model model) {
         if (errors.hasErrors()) {
              /* 회원가입 실패시 입력 데이터 값을 유지 */
             model.addAttribute("userDto", dto);
@@ -90,7 +90,7 @@ public class UserController {
 
     /* 회원정보 수정 */
     @GetMapping("/modify")
-    public String modify(@LoginUser UserDto.UserSessionDto user, Model model) {
+    public String modify(@LoginUser UserDto.Response user, Model model) {
         if (user != null) {
             model.addAttribute("user", user);
         }

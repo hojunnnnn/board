@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * REST API Controller
+ */
 @RequiredArgsConstructor
 @RequestMapping("/api")
 @RestController
@@ -19,20 +22,20 @@ public class CommentApiController {
 
     /* CREATE */
     @PostMapping("/posts/{id}/comments")
-    public ResponseEntity save(@PathVariable Long id, @RequestBody CommentDto.CommentRequestDto dto,
-                               @LoginUser UserDto.UserSessionDto userSessionDto) {
+    public ResponseEntity save(@PathVariable Long id, @RequestBody CommentDto.Request dto,
+                               @LoginUser UserDto.Response userSessionDto) {
         return ResponseEntity.ok(commentService.save(id, userSessionDto.getNickname(), dto));
     }
 
     /* READ */
     @GetMapping("/posts/{id}/comments")
-    public List<CommentDto.CommentResponseDto> read(@PathVariable Long id) {
+    public List<CommentDto.Response> read(@PathVariable Long id) {
         return commentService.findAll(id);
     }
 
     /* UPDATE */
     @PutMapping({"/posts/{id}/comments/{id}"})
-    public ResponseEntity update(@PathVariable Long id, @RequestBody CommentDto.CommentRequestDto dto) {
+    public ResponseEntity update(@PathVariable Long id, @RequestBody CommentDto.Request dto) {
         commentService.update(id, dto);
         return ResponseEntity.ok(id);
     }

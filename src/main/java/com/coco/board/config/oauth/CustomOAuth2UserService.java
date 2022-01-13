@@ -53,7 +53,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         User user = saveOrUpdate(attributes);
 
         /* 세션 정보를 저장하는 직렬화된 dto 클래스 */
-        session.setAttribute("user", new UserDto.UserSessionDto(user));
+        session.setAttribute("user", new UserDto.Response(user));
 
         return new DefaultOAuth2User(
                 Collections.singleton(new SimpleGrantedAuthority(user.getRoleValue())),

@@ -10,6 +10,9 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.Map;
 
+/**
+ * OAuth DTO Class
+ */
 @Slf4j
 @AllArgsConstructor
 @NoArgsConstructor
