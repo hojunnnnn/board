@@ -21,19 +21,19 @@
   - 후기
 
 ## 들어가며
-1. **프로젝트 소개**
+**1. 프로젝트 소개**
 
 프로젝트를 시작하게 된 계기는 웹 프로그래밍의 기본 소양이라 할 수 있는 게시판을 만들어보며 배우고자 시작하게되었습니다.   
 독학으로 관련 기술들을 학습한 이후 제작한 개인 프로젝트이기 때문에 개인적인 만족감을 가지고 있는 프로젝트입니다.
 
-2. **프로젝트 기능**
+**2. 프로젝트 기능**
 
 프로젝트의 주요 기능은 다음과 같습니다.
 - **게시판 -** CRUD 기능, 조회수, 페이징 및 검색 처리
 - **사용자 -** Security 회원가입 및 로그인, OAuth 2.0 구글, 네이버 로그인, 회원정보 수정, 회원가입시 유효성 검사 및 중복 검사
 - **댓글 -** CRUD 기능
 
-3. **개발 환경**
+**3. 개발 환경**
 
 - Java 11
 - SpringBoot 2.5.6
@@ -46,10 +46,12 @@
 
 
 ## 구조 및 설계   
-1. **패키지 구조**
+**1. 패키지 구조**
+   
 <details>
-<summary>보기</summary>  
-
+  
+<summary>보기</summary>   
+ 
 
 ```
 📦src
@@ -150,21 +152,19 @@
  ```
   
  </details>
-  
- 2. **DB 설계**
+     
+     
+ **2. DB 설계**
 
 ![erd 3차 2022-01-03](https://user-images.githubusercontent.com/59757689/148910882-2ac9ec57-c339-4bef-a6d5-13025a8d9ac9.PNG)   
-<details>
-  <summary>테이블 설계 자세히 보기</summary>   
-  
 ![posts 테이블 db 설계](https://user-images.githubusercontent.com/59757689/148910938-c6a99c8e-fefc-467b-a2af-a68a00e01a11.PNG)   
 ![user 테이블 db 설계](https://user-images.githubusercontent.com/59757689/149279956-b0a184da-9b19-4bcf-9ce8-6c001ef81f1d.PNG) 
 ![comment 테이블 db 설계](https://user-images.githubusercontent.com/59757689/148910946-02280553-97ce-4d82-bbda-9c911ea89bd4.PNG)   
 created_date와 modified_date는 날짜 포맷을 적용해주기 위해 datetime > varchar로 변경했습니다.   
-  
-</details>
+   
+<br/>
 
-3. **API 설계**
+**3. API 설계**
 
 ![게시글 관련 API 설계](https://user-images.githubusercontent.com/59757689/148911404-cea959a0-0753-4548-9d87-1c94bc9572b9.PNG)   
 ![회원 관련 API 설계 (2)](https://user-images.githubusercontent.com/59757689/148911411-0cfb65ee-5782-4f04-a7c9-7dcc84abfed8.PNG)   
@@ -189,7 +189,7 @@ created_date와 modified_date는 날짜 포맷을 적용해주기 위해 datetim
 - <a href="https://dev-coco.tistory.com/136" target="_blank">많은 Dto Class를 Inner Class로 한번에 관리하기</a>
 
 ## 마치며
-1. **프로젝트 보완사항**
+**1. 프로젝트 보완사항**
 
 프로젝트 초기에 구상한 기능은 기본적인 CRUD 즉, 게시판에 올라오는 게시글을 대상으로 Create, Read, Update, Delete가 가능한 게시판이었습니다.   
 그러나 게시판 CRUD 기능이 완성되어 갈 때 쯤, 아쉬운 부분이 계속해서 생겨 몇몇 기능들을 추가하게 되었습니다.   
@@ -200,7 +200,7 @@ Mustache를 템플릿 엔진으로 사용하고 있었는데, Mustache는 단순
 그래서 추후에 브랜치를 나눠 Mustache에서 Thymeleaf로 조금씩 바꾸며 프로젝트 완성도를 높일 계획에 있습니다.
 
 
-2. **후기**
+**2. 후기**
 
 혼자 독학하며 처음 만들어본 프로젝트이기 때문에, 공부한 내용을 사용해보는 설렘만큼이나 부족한 부분에 대한 아쉬움도 많이 남았습니다.     
 효율적인 설계를 위해 고민하고 찾아보며 실제로 많이 공부할 수 있었던 부분도 많았습니다.   
