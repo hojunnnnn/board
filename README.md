@@ -23,7 +23,7 @@
 ## 들어가며
 **1. 프로젝트 소개**
 
-프로젝트를 시작하게 된 계기는 웹 프로그래밍의 기본 소양이라 할 수 있는 게시판을 만들어보며 배우고자 시작하게되었습니다.   
+프로젝트를 시작하게 된 계기는 웹 프로그래밍의 기본 소양이라 할 수 있는 게시판을 직접 만들어보며 배우고자 시작하게되었습니다.   
 독학으로 관련 기술들을 학습한 이후 제작한 개인 프로젝트이기 때문에 개인적인 만족감을 가지고 있는 프로젝트입니다.
 
 **2. 프로젝트 기능**
@@ -186,7 +186,7 @@ created_date와 modified_date는 날짜 포맷을 적용해주기 위해 datetim
 - <a href="https://dev-coco.tistory.com/132" target="_blank">게시판 댓글 작성 및 조회 구현</a>
 - <a href="https://dev-coco.tistory.com/134" target="_blank">게시판 댓글 수정 및 삭제 구현</a>
 - <a href="https://dev-coco.tistory.com/136" target="_blank">게시판 댓글 작성자만 수정, 삭제 가능하게 하기</a>
-- <a href="https://dev-coco.tistory.com/136" target="_blank">많은 Dto Class를 Inner Class로 한번에 관리하기</a>
+- <a href="https://dev-coco.tistory.com/136" target="_blank">[리팩토링]Dto Class를 Inner Class로 한번에 관리하기</a>
 
 ## 마치며
 **1. 프로젝트 보완사항**
@@ -197,7 +197,7 @@ Mustache를 템플릿 엔진으로 사용하고 있었는데, Mustache는 단순
 문법은 단순했고 Logic-less의 벽이 있었습니다.   
 그래서 데이터를 렌더링 하기 전 서버에서 전처리를 하거나 화면에 표시된 후에 자바스크립트로 후처리를 해줬지만   
 보완해야 할 부분이 아직 몇 개 남아있다고 생각합니다.   
-그래서 추후에 브랜치를 나눠 Mustache에서 Thymeleaf로 조금씩 바꾸며 프로젝트 완성도를 높일 계획에 있습니다.
+추후에 브랜치를 나눠 Mustache에서 Thymeleaf로 조금씩 바꾸며 프로젝트 완성도를 높일 계획에 있습니다.
 
 
 **2. 후기**
