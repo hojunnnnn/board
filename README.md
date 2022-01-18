@@ -61,23 +61,17 @@
  ┃ ┃ ┃ ┗ 📂coco
  ┃ ┃ ┃ ┃ ┗ 📂board
  ┃ ┃ ┃ ┃ ┃ ┣ 📂config
- ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂auth
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CustomAuthFailureHandler.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CustomUserDetails.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CustomUserDetailsService.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜LoginUser.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜LoginUserArgumentResolver.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂oauth
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CustomOAuth2UserService.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜OAuthAttributes.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜SecurityConfig.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜WebConfig.java
  ┃ ┃ ┃ ┃ ┃ ┣ 📂controller
- ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CommentApiController.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜PostsApiController.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜PostsIndexController.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜UserApiController.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜UserController.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂comment
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜CommentApiController.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂posts
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜PostsApiController.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜PostsIndexController.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂user
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜UserApiController.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜UserController.java
  ┃ ┃ ┃ ┃ ┃ ┣ 📂domain
  ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂comment
  ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜Comment.java
@@ -90,6 +84,20 @@
  ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜User.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜UserRepository.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜TimeEntity.java
+ ┃ ┃ ┃ ┃ ┃ ┣ 📂dto
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CommentDto.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜PostsDto.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜UserDto.java
+ ┃ ┃ ┃ ┃ ┃ ┣ 📂security
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂auth
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CustomAuthFailureHandler.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CustomUserDetails.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CustomUserDetailsService.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜LoginUser.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜LoginUserArgumentResolver.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂oauth
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CustomOAuth2UserService.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜OAuthAttributes.java
  ┃ ┃ ┃ ┃ ┃ ┣ 📂service
  ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CommentService.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜PostsService.java
@@ -99,11 +107,6 @@
  ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜EmailCheckValidator.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜NicknameCheckValidator.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜UsernameCheckValidator.java
- ┃ ┃ ┃ ┃ ┃ ┣ 📂web
- ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂dto
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CommentDto.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜PostsDto.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜UserDto.java
  ┃ ┃ ┃ ┃ ┃ ┗ 📜BoardApplication.java
  ┃ ┗ 📂resources
  ┃ ┃ ┣ 📂static
@@ -146,8 +149,10 @@
  ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CommentRepositoryTest.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜PostsRepositoryTest.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜UserRepositoryTest.java
+ ┃ ┃ ┃ ┃ ┃ ┣ 📂global
  ┃ ┃ ┃ ┃ ┃ ┣ 📂service
  ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜PostsServiceTest.java
+ ┃ ┃ ┃ ┃ ┃ ┣ 📂web
  ┃ ┃ ┃ ┃ ┃ ┗ 📜BoardApplicationTests.java
  ```
   
