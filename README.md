@@ -177,7 +177,7 @@ created_date와 modified_date는 날짜 포맷을 적용해주기 위해 datetim
 
 ## 개발 내용
 
-- <a href="https://dev-coco.tistory.com/111" target="_blank">프로젝트 명세서 정리</a>
+- <a href="https://dev-coco.tistory.com/111" target="_blank">게시판 프로젝트 명세서 정리</a>
 - <a href="https://dev-coco.tistory.com/113" target="_blank">게시판 조회수 기능 추가</a>
 - <a href="https://dev-coco.tistory.com/114" target="_blank">게시판 페이징 처리 구현</a>
 - <a href="https://dev-coco.tistory.com/115" target="_blank">게시판 검색처리 및 페이징 구현</a>
