@@ -1,7 +1,7 @@
-package com.coco.board.web.controller;
+package com.coco.board.controller.user;
 
 import com.coco.board.service.UserService;
-import com.coco.board.web.dto.UserDto;
+import com.coco.board.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

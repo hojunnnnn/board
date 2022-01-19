@@ -1,7 +1,7 @@
 package com.coco.board.validator;
 
 import com.coco.board.domain.user.UserRepository;
-import com.coco.board.web.dto.UserDto;
+import com.coco.board.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;

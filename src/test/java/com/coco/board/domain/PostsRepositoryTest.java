@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
@@ -22,15 +21,15 @@ public class PostsRepositoryTest {
     @Autowired
     private PostsRepository postsRepository;
 
-//    @BeforeEach
-//    public void reset() {
-//        postsRepository.deleteAll();
-//    }
-//
-//    @AfterEach
-//    public void clear() {
-//        postsRepository.deleteAll();
-//    }
+    @BeforeEach
+    public void reset() {
+        postsRepository.deleteAll();
+    }
+
+    @AfterEach
+    public void clear() {
+        postsRepository.deleteAll();
+    }
 
     @Test
     public void 게시글_생성_가져오기() {
@@ -48,15 +47,4 @@ public class PostsRepositoryTest {
 
         log.info(posts);
     }
-
-//    @Test
-//    public void 게시글_댓글_가져오기() {
-//
-//        List<Object[]> result = postsRepository.getPostsWithComment(2L);
-//
-//        for (Object[] arr : result) {
-//            log.info(Arrays.toString(arr));
-//
-//        }
-//    }
 }

@@ -1,6 +1,6 @@
 package com.coco.board.config;
 
-import com.coco.board.config.auth.LoginUserArgumentResolver;
+import com.coco.board.security.auth.LoginUserArgumentResolver;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;

@@ -1,7 +1,7 @@
 package com.coco.board.config;
 
-import com.coco.board.config.oauth.CustomOAuth2UserService;
-import com.coco.board.config.auth.CustomUserDetailsService;
+import com.coco.board.security.oauth.CustomOAuth2UserService;
+import com.coco.board.security.auth.CustomUserDetailsService;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

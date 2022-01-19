@@ -1,6 +1,6 @@
-package com.coco.board.config.auth;
+package com.coco.board.security.auth;
 
-import com.coco.board.web.dto.UserDto;
+import com.coco.board.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Component;
@@ -17,7 +17,7 @@ public class LoginUserArgumentResolver implements HandlerMethodArgumentResolver 
 
     private final HttpSession session;
 
-    /* @LoginUser 어노테이션이 붙어 있고, 파라미터 클래스 타입이 UserSessionDto인가 판단 후 true반환 */
+    /* @LoginUser 어노테이션이 붙어 있고, 파라미터 클래스 타입이 UserDto.Response인가 판단 후 true반환 */
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
         boolean isLoginUserAnnotation = parameter.getParameterAnnotation(LoginUser.class) != null;

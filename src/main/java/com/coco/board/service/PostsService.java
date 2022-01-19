@@ -4,7 +4,7 @@ import com.coco.board.domain.posts.Posts;
 import com.coco.board.domain.posts.PostsRepository;
 import com.coco.board.domain.user.User;
 import com.coco.board.domain.user.UserRepository;
-import com.coco.board.web.dto.PostsDto;
+import com.coco.board.dto.PostsDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;

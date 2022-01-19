@@ -1,4 +1,4 @@
-package com.coco.board.config.auth;
+package com.coco.board.security.auth;
 
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.BadCredentialsException;

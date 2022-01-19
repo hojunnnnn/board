@@ -6,7 +6,7 @@ import com.coco.board.domain.posts.Posts;
 import com.coco.board.domain.posts.PostsRepository;
 import com.coco.board.domain.user.User;
 import com.coco.board.domain.user.UserRepository;
-import com.coco.board.web.dto.CommentDto;
+import com.coco.board.dto.CommentDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

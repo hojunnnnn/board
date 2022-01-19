@@ -1,4 +1,4 @@
-package com.coco.board.web.dto;
+package com.coco.board.dto;
 
 import com.coco.board.domain.comment.Comment;
 import com.coco.board.domain.posts.Posts;

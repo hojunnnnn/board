@@ -1,9 +1,7 @@
 package com.coco.board.domain.comment;
 
-import com.coco.board.domain.TimeEntity;
 import com.coco.board.domain.posts.Posts;
 import com.coco.board.domain.user.User;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

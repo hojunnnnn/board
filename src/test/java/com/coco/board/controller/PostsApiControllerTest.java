@@ -1,8 +1,8 @@
-package com.coco.board.web.controller;
+package com.coco.board.controller;
 
 import com.coco.board.domain.posts.Posts;
 import com.coco.board.domain.posts.PostsRepository;
-import com.coco.board.web.dto.PostsDto;
+import com.coco.board.dto.PostsDto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,13 +34,8 @@ public class PostsApiControllerTest {
     @Autowired
     private TestRestTemplate restTemplate;
 
-    @BeforeEach
-    public void reset() {
-        postsRepository.deleteAll();
-    }
-
     @AfterEach
-    public void clear() throws Exception {
+    public void clear() {
         postsRepository.deleteAll();
     }
 
@@ -57,14 +52,14 @@ public class PostsApiControllerTest {
         String changeTitle = "title2";
         String changeContent = "content2";
 
-        PostsDto.PostsRequestDto requestDto = PostsDto.PostsRequestDto.builder()
+        PostsDto.Request requestDto = PostsDto.Request.builder()
                 .title(changeTitle)
                 .content(changeContent)
                 .build();
 
         String url = "http://localhost:" + port + "/api/posts/" + updateId;
 
-        HttpEntity<PostsDto.PostsRequestDto> requestEntity = new HttpEntity<>(requestDto);
+        HttpEntity<PostsDto.Request> requestEntity = new HttpEntity<>(requestDto);
 
         ResponseEntity<Long> responseEntity = restTemplate.exchange(url, HttpMethod.PUT, requestEntity, Long.class);
 

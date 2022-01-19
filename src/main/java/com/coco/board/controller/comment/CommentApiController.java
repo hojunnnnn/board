@@ -1,9 +1,9 @@
-package com.coco.board.web.controller;
+package com.coco.board.controller.comment;
 
-import com.coco.board.config.auth.LoginUser;
+import com.coco.board.security.auth.LoginUser;
 import com.coco.board.service.CommentService;
-import com.coco.board.web.dto.CommentDto;
-import com.coco.board.web.dto.UserDto;
+import com.coco.board.dto.CommentDto;
+import com.coco.board.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

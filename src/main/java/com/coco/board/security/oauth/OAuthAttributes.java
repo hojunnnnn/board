@@ -1,4 +1,4 @@
-package com.coco.board.config.oauth;
+package com.coco.board.security.oauth;
 
 import com.coco.board.domain.user.Role;
 import com.coco.board.domain.user.User;

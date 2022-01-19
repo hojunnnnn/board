@@ -1,8 +1,8 @@
-package com.coco.board.config.oauth;
+package com.coco.board.security.oauth;
 
 import com.coco.board.domain.user.User;
 import com.coco.board.domain.user.UserRepository;
-import com.coco.board.web.dto.UserDto;
+import com.coco.board.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

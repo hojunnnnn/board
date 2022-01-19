@@ -1,4 +1,4 @@
-package com.coco.board.config.auth;
+package com.coco.board.security.auth;
 
 import com.coco.board.domain.user.User;
 import lombok.AllArgsConstructor;

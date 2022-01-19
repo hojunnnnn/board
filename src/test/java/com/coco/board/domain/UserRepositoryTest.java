@@ -4,7 +4,6 @@ import com.coco.board.domain.user.Role;
 import com.coco.board.domain.user.User;
 import com.coco.board.domain.user.UserRepository;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,11 +21,6 @@ public class UserRepositoryTest {
 
     @Autowired
     private BCryptPasswordEncoder encoder;
-
-    @BeforeEach
-    public void setUp() {
-        userRepository.deleteAll();
-    }
 
     @AfterEach
     public void clear() {

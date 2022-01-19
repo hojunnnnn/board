@@ -1,4 +1,4 @@
-package com.coco.board.web.dto;
+package com.coco.board.dto;
 
 import com.coco.board.domain.posts.Posts;
 import com.coco.board.domain.user.User;
@@ -69,5 +69,4 @@ public class PostsDto {
             this.comments = posts.getComments().stream().map(CommentDto.Response::new).collect(Collectors.toList());
         }
     }
-
 }

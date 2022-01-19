@@ -4,6 +4,7 @@ import com.coco.board.domain.comment.Comment;
 import com.coco.board.domain.comment.CommentRepository;
 import com.coco.board.domain.posts.Posts;
 import com.coco.board.domain.user.User;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,15 +20,10 @@ public class CommentRepositoryTest {
     @Autowired
     CommentRepository commentRepository;
 
-//    @BeforeEach
-//    public void reset() {
-//        commentRepository.deleteAll();
-//    }
-//
-//    @AfterEach
-//    public void clear() {
-//        commentRepository.deleteAll();
-//    }
+    @AfterEach
+    public void clear() {
+        commentRepository.deleteAll();
+    }
 
     @Test
     public void 게시글_댓글_생성_조회() {

@@ -1,4 +1,4 @@
-package com.coco.board.config.auth;
+package com.coco.board.security.auth;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

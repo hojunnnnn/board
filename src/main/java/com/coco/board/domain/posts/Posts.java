@@ -1,8 +1,8 @@
 package com.coco.board.domain.posts;
 
 import com.coco.board.domain.TimeEntity;
-import com.coco.board.domain.comment.Comment;
 import com.coco.board.domain.user.User;
+import com.coco.board.domain.comment.Comment;
 import lombok.*;
 
 import javax.persistence.*;
@@ -39,7 +39,7 @@ public class Posts extends TimeEntity {
     @OrderBy("id asc") // 댓글 정렬
     private List<Comment> comments;
 
-    /* 게시글 수정 메소드 */
+    /* 게시글 수정 */
     public void update(String title, String content) {
         this.title = title;
         this.content = content;

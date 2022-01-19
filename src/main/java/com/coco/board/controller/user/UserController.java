@@ -1,11 +1,11 @@
-package com.coco.board.web.controller;
+package com.coco.board.controller.user;
 
-import com.coco.board.config.auth.LoginUser;
+import com.coco.board.security.auth.LoginUser;
 import com.coco.board.validator.EmailCheckValidator;
 import com.coco.board.validator.NicknameCheckValidator;
 import com.coco.board.validator.UsernameCheckValidator;
 import com.coco.board.service.UserService;
-import com.coco.board.web.dto.UserDto;
+import com.coco.board.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

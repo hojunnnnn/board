@@ -1,9 +1,9 @@
-package com.coco.board.web.controller;
+package com.coco.board.controller.posts;
 
-import com.coco.board.config.auth.LoginUser;
-import com.coco.board.web.dto.CommentDto;
-import com.coco.board.web.dto.PostsDto;
-import com.coco.board.web.dto.UserDto;
+import com.coco.board.security.auth.LoginUser;
+import com.coco.board.dto.CommentDto;
+import com.coco.board.dto.PostsDto;
+import com.coco.board.dto.UserDto;
 import com.coco.board.domain.posts.Posts;
 import com.coco.board.service.PostsService;
 import lombok.RequiredArgsConstructor;
