@@ -195,7 +195,7 @@ created_date와 modified_date는 날짜 포맷을 적용해주기 위해 datetim
 - <a href="https://dev-coco.tistory.com/132" target="_blank">게시판 댓글 작성 및 조회 구현</a>
 - <a href="https://dev-coco.tistory.com/134" target="_blank">게시판 댓글 수정 및 삭제 구현</a>
 - <a href="https://dev-coco.tistory.com/136" target="_blank">게시판 댓글 작성자만 수정, 삭제 가능하게 하기</a>
-- <a href="https://dev-coco.tistory.com/136" target="_blank">[리팩토링]Dto Class를 Inner Class로 한번에 관리하기</a>
+- <a href="https://dev-coco.tistory.com/138" target="_blank">[리팩토링]Dto Class를 Inner Class로 한번에 관리하기</a>
 
 ## 마치며
 **1. 프로젝트 보완사항**
