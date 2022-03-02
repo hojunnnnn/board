@@ -202,7 +202,7 @@ created_date와 modified_date는 날짜 포맷을 적용해주기 위해 datetim
 **1. 프로젝트 보완사항**
 
 프로젝트 초기에 구상한 기능은 기본적인 CRUD 즉, 게시판에 올라오는 게시글을 대상으로 Create, Read, Update, Delete가 가능한 게시판이었습니다.   
-또, MVC 설계에서 Controller, Service, Repository, View의 역할에 대한 구분도 명확하게 하고 싶다는 생각이 들었습니다.   
+또, MVC 설계에서 Model, View, Controller의 역할에 대한 구분도 명확하게 하고 싶다는 생각이 들었습니다.   
 템플릿 엔진으로 Mustache를 선택했는데, 그 이유는 Mustache는 단순히 화면에 데이터를 렌더링 하는 엔진이고 Logic-less 하기 때문에   
 View의 역할과 서버의 역할이 명확하게 분리되어 OOP의 5원칙 중 하나인 SRP를 지킬 수 있었고,   
 xss를 기본적으로 이스케이프 할 수 있으며, 다른 템플릿에 비해 빠른 로딩 속도를 자랑했기에 Mustache를 사용하게 되었습니다.   
@@ -218,14 +218,21 @@ xss를 기본적으로 이스케이프 할 수 있으며, 다른 템플릿에 �
 - 페이지 처음, 끝으로 이동하는 버튼
 - 생성, 수정시간 format 설정 varchar > datetime
 - 다른 사용자와 자신의 댓글이 댓글란에 있을때 자신의 댓글만 수정,삭제 버튼 보이기
+  
+</details>   
+
+추후에 브랜치를 나눠 Mustache에서 Thymeleaf로 조금씩 바꾸며 프로젝트 완성도를 높이고, 고도화 할 계획에 있습니다.   
+   
+   <details>
+  <summary>추가할 기능 </summary>
+     
+  
 - 댓글 페이징 처리
 - 쿠키나 세션을 이용해 조회수 중복 카운트 방지
 - 파일 업로드 기능 추가
 - 좋아요 기능 추가
   
-</details>   
-
-추후에 브랜치를 나눠 Mustache에서 Thymeleaf로 조금씩 바꾸며 프로젝트 완성도를 높이고, 고도화 할 계획에 있습니다.   
+</details>  
 
 
 **2. 후기**
