@@ -47,10 +47,6 @@
 - Mustache
 
 **4. 실행 화면**
-<details>
-  <summary>실행화면 보기</summary>
-  <br/>   
-  
   <details>
     <summary>게시글 관련</summary>   
        
@@ -142,8 +138,6 @@
   </details>
   <br/>   
  
-</details>    
-<br/>    
    
 ## 구조 및 설계   
    
@@ -151,7 +145,7 @@
    
 <details>
   
-<summary>보기</summary>   
+<summary>패키지 구조 보기</summary>   
  
 
 ```
