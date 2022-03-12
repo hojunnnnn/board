@@ -155,53 +155,49 @@
  ┃ ┃ ┗ 📂com
  ┃ ┃ ┃ ┗ 📂coco
  ┃ ┃ ┃ ┃ ┗ 📂board
- ┃ ┃ ┃ ┃ ┃ ┣ 📂config
- ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜SecurityConfig.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜WebConfig.java
- ┃ ┃ ┃ ┃ ┃ ┣ 📂controller
- ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂comment
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜CommentApiController.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂posts
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜PostsApiController.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜PostsIndexController.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂user
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜UserApiController.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜UserController.java
- ┃ ┃ ┃ ┃ ┃ ┣ 📂domain
- ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂comment
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜Comment.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜CommentRepository.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂posts
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜Posts.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜PostsRepository.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂user
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜Role.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜User.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜UserRepository.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜TimeEntity.java
- ┃ ┃ ┃ ┃ ┃ ┣ 📂dto
- ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CommentDto.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜PostsDto.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜UserDto.java
- ┃ ┃ ┃ ┃ ┃ ┣ 📂security
- ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂auth
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CustomAuthFailureHandler.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CustomUserDetails.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CustomUserDetailsService.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜LoginUser.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜LoginUserArgumentResolver.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂oauth
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CustomOAuth2UserService.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜OAuthAttributes.java
- ┃ ┃ ┃ ┃ ┃ ┣ 📂service
+ ┃ ┃ ┃ ┃ ┃ ┣ 📂application
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂dto
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CommentDto.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜PostsDto.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜UserDto.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂security
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂auth
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CustomAuthFailureHandler.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CustomUserDetails.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CustomUserDetailsService.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜LoginUser.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜LoginUserArgumentResolver.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂oauth
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CustomOAuth2UserService.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜OAuthAttributes.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂validator
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜AbstractValidator.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜EmailCheckValidator.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜NicknameCheckValidator.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜UsernameCheckValidator.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CommentService.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜PostsService.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜UserService.java
- ┃ ┃ ┃ ┃ ┃ ┣ 📂validator
- ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜AbstractValidator.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜EmailCheckValidator.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜NicknameCheckValidator.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜UsernameCheckValidator.java
+ ┃ ┃ ┃ ┃ ┃ ┣ 📂domain
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜Comment.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜Posts.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜Role.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜User.java
+ ┃ ┃ ┃ ┃ ┃ ┣ 📂infrastructure
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂config
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜SecurityConfig.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜WebConfig.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂persistence
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CommentRepository.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜PostsRepository.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜TimeEntity.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜UserRepository.java
+ ┃ ┃ ┃ ┃ ┃ ┣ 📂presentation
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CommentApiController.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜PostsApiController.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜PostsIndexController.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜UserApiController.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜UserController.java
  ┃ ┃ ┃ ┃ ┃ ┗ 📜BoardApplication.java
  ┃ ┗ 📂resources
  ┃ ┃ ┣ 📂static
@@ -236,18 +232,17 @@
  ┃ ┃ ┗ 📂com
  ┃ ┃ ┃ ┗ 📂coco
  ┃ ┃ ┃ ┃ ┗ 📂board
- ┃ ┃ ┃ ┃ ┃ ┣ 📂config
- ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜SecurityConfigTest.java
  ┃ ┃ ┃ ┃ ┃ ┣ 📂controller
  ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜PostsApiControllerTest.java
  ┃ ┃ ┃ ┃ ┃ ┣ 📂domain
  ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CommentRepositoryTest.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜PostsRepositoryTest.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜UserRepositoryTest.java
- ┃ ┃ ┃ ┃ ┃ ┣ 📂global
+ ┃ ┃ ┃ ┃ ┃ ┣ 📂infrastructure
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂config
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜SecurityConfigTest.java
  ┃ ┃ ┃ ┃ ┃ ┣ 📂service
  ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜PostsServiceTest.java
- ┃ ┃ ┃ ┃ ┃ ┣ 📂web
  ┃ ┃ ┃ ┃ ┃ ┗ 📜BoardApplicationTests.java
  ```
   
