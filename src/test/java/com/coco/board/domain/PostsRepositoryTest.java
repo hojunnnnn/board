@@ -1,7 +1,6 @@
 package com.coco.board.domain;
 
-import com.coco.board.domain.posts.Posts;
-import com.coco.board.domain.posts.PostsRepository;
+import com.coco.board.infrastructure.persistence.PostsRepository;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

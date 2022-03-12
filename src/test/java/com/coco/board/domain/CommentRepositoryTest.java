@@ -1,9 +1,6 @@
 package com.coco.board.domain;
 
-import com.coco.board.domain.comment.Comment;
-import com.coco.board.domain.comment.CommentRepository;
-import com.coco.board.domain.posts.Posts;
-import com.coco.board.domain.user.User;
+import com.coco.board.infrastructure.persistence.CommentRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

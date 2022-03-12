@@ -1,8 +1,6 @@
 package com.coco.board.domain;
 
-import com.coco.board.domain.user.Role;
-import com.coco.board.domain.user.User;
-import com.coco.board.domain.user.UserRepository;
+import com.coco.board.infrastructure.persistence.UserRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

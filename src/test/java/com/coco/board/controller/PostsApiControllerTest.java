@@ -1,10 +1,9 @@
 package com.coco.board.controller;
 
-import com.coco.board.domain.posts.Posts;
-import com.coco.board.domain.posts.PostsRepository;
-import com.coco.board.dto.PostsDto;
+import com.coco.board.domain.Posts;
+import com.coco.board.infrastructure.persistence.PostsRepository;
+import com.coco.board.application.dto.PostsDto;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
