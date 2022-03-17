@@ -188,9 +188,9 @@
  ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜SecurityConfig.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜WebConfig.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂persistence
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜BaseTimeEntity.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CommentRepository.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜PostsRepository.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜TimeEntity.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜UserRepository.java
  ┃ ┃ ┃ ┃ ┃ ┣ 📂presentation
  ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CommentApiController.java
