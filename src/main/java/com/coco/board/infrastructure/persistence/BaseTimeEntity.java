@@ -18,7 +18,7 @@ import java.time.format.DateTimeFormatter;
 @Getter
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public abstract class TimeEntity {
+abstract class BaseTimeEntity {
 
     @Column(name = "created_date", nullable = false)
     @CreatedDate
