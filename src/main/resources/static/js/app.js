@@ -131,7 +131,7 @@ const main = {
             return false;
         } else if(!/^[ㄱ-ㅎ가-힣a-z0-9-_]{2,10}$/.test(data.nickname)) {
             alert("닉네임은 특수문자를 제외한 2~10자리여야 합니다.");
-            $('#username').focus();
+            $('#nickname').focus();
             return false;
         }
         const con_check = confirm("수정하시겠습니까?");

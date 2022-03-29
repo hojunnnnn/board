@@ -1,4 +1,4 @@
-package com.coco.board.infrastructure.persistence;
+package com.coco.board.domain;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;

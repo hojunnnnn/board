@@ -1,6 +1,5 @@
 package com.coco.board.domain;
 
-import com.coco.board.infrastructure.persistence.TimeEntity;
 import lombok.*;
 
 import javax.persistence.*;
@@ -10,7 +9,7 @@ import javax.persistence.*;
 @Builder
 @Getter
 @Entity
-public class User extends TimeEntity {
+public class User extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

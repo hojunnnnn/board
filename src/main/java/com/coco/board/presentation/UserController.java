@@ -1,9 +1,9 @@
 package com.coco.board.presentation;
 
 import com.coco.board.application.security.auth.LoginUser;
-import com.coco.board.application.validator.EmailCheckValidator;
-import com.coco.board.application.validator.NicknameCheckValidator;
-import com.coco.board.application.validator.UsernameCheckValidator;
+import com.coco.board.application.validator.CheckEmailValidator;
+import com.coco.board.application.validator.CheckNicknameValidator;
+import com.coco.board.application.validator.CheckUsernameValidator;
 import com.coco.board.application.UserService;
 import com.coco.board.application.dto.UserDto;
 import lombok.RequiredArgsConstructor;
@@ -33,16 +33,16 @@ public class UserController {
 
     private final UserService userService;
 
-    private final UsernameCheckValidator usernameCheckValidator;
-    private final NicknameCheckValidator nicknameCheckValidator;
-    private final EmailCheckValidator emailCheckValidator;
+    private final CheckUsernameValidator checkUsernameValidator;
+    private final CheckNicknameValidator checkNicknameValidator;
+    private final CheckEmailValidator checkEmailValidator;
 
     /* 커스텀 유효성 검증을 위해 추가 */
     @InitBinder
     public void validatorBinder(WebDataBinder binder) {
-        binder.addValidators(usernameCheckValidator);
-        binder.addValidators(nicknameCheckValidator);
-        binder.addValidators(emailCheckValidator);
+        binder.addValidators(checkUsernameValidator);
+        binder.addValidators(checkNicknameValidator);
+        binder.addValidators(checkEmailValidator);
     }
 
     @GetMapping("/auth/join")
