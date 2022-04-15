@@ -26,9 +26,9 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableGlobalMethodSecurity(prePostEnabled = true) // 특정 주소로 접근하면 권한 및 인증을 미리 체크
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final CustomUserDetailsService myUserDetailsService;
+    private final CustomUserDetailsService customUserDetailsService;
 
-    private final AuthenticationFailureHandler customFailurHandler;
+    private final AuthenticationFailureHandler customFailureHandler;
 
     private final CustomOAuth2UserService customOAuth2UserService;
 
@@ -46,7 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     /* 시큐리티가 로그인 과정에서 password를 가로챌때 어떤 해쉬로 암호화 했는지 확인 */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(myUserDetailsService).passwordEncoder(Encoder());
+        auth.userDetailsService(customUserDetailsService).passwordEncoder(Encoder());
     }
 
     /* static 관련설정은 무시 */
@@ -68,7 +68,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/auth/login")
                 .loginProcessingUrl("/auth/loginProc")
-                .failureHandler(customFailurHandler)
+                .failureHandler(customFailureHandler)
                 .defaultSuccessUrl("/")
                 .and()
                 .logout()
