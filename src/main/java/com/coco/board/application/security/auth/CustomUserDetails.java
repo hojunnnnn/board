@@ -15,7 +15,7 @@ import java.util.Collection;
 @AllArgsConstructor
 public class CustomUserDetails implements UserDetails {
 
-    private User user;
+    private final User user;
 
     @Override
     public String getPassword() { return user.getPassword(); }

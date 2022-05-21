@@ -23,11 +23,11 @@ public class UserService {
 
     /* 회원가입 */
     @Transactional
-    public Long userJoin(UserDto.Request dto) {
+    public void userJoin(UserDto.Request dto) {
 
         dto.setPassword(encoder.encode(dto.getPassword()));
 
-        return userRepository.save(dto.toEntity()).getId();
+        userRepository.save(dto.toEntity());
     }
 
     /* 회원가입 시, 유효성 검사 및 중복 체크 */
@@ -45,13 +45,11 @@ public class UserService {
 
     /* 회원수정 (dirty checking) */
     @Transactional
-    public Long modify(UserDto.Request dto) {
+    public void modify(UserDto.Request dto) {
         User user = userRepository.findById(dto.toEntity().getId()).orElseThrow(() ->
                 new IllegalArgumentException("해당 회원이 존재하지 않습니다."));
 
         String encPassword = encoder.encode(dto.getPassword());
         user.modify(dto.getNickname(), encPassword);
-        return user.getId();
     }
-
 }

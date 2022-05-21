@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.net.URLEncoder;
 /**
@@ -18,6 +19,10 @@ import java.net.URLEncoder;
  */
 @Component
 public class CustomAuthFailureHandler extends SimpleUrlAuthenticationFailureHandler {
+
+    private final HttpSession session;
+
+    public CustomAuthFailureHandler(HttpSession session) { this.session = session; }
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
@@ -41,5 +46,7 @@ public class CustomAuthFailureHandler extends SimpleUrlAuthenticationFailureHand
         setDefaultFailureUrl("/auth/login?error=true&exception="+errorMessage);
 
         super.onAuthenticationFailure(request, response, exception);
+
+        session.invalidate();
     }
 }

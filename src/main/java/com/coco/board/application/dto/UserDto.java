@@ -63,12 +63,12 @@ public class UserDto {
     @Getter
     public static class Response implements Serializable {
 
-        private Long id;
-        private String username;
-        private String nickname;
-        private String email;
-        private Role role;
-        private String modifiedDate;
+        private final Long id;
+        private final String username;
+        private final String nickname;
+        private final String email;
+        private final Role role;
+        private final String modifiedDate;
 
         /* Entity -> dto */
         public Response(User user) {
