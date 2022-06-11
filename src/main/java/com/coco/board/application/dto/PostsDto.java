@@ -12,12 +12,14 @@ import java.util.stream.Collectors;
  */
 public class PostsDto {
 
+
     /** 게시글의 등록과 수정을 처리할 요청(Request) 클래스 */
     @Data
     @AllArgsConstructor
     @NoArgsConstructor
     @Builder
     public static class Request {
+
         private Long id;
         private String title;
         private String writer;
@@ -48,14 +50,14 @@ public class PostsDto {
      */
     @Getter
     public static class Response {
-        private Long id;
-        private String title;
-        private String writer;
-        private String content;
-        private String createdDate, modifiedDate;
-        private int view;
-        private Long userId;
-        private List<CommentDto.Response> comments;
+        private final Long id;
+        private final String title;
+        private final String writer;
+        private final String content;
+        private final String createdDate, modifiedDate;
+        private final int view;
+        private final Long userId;
+        private final List<CommentDto.Response> comments;
 
         /* Entity -> Dto*/
         public Response(Posts posts) {

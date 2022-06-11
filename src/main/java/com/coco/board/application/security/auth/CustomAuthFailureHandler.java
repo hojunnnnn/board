@@ -47,6 +47,6 @@ public class CustomAuthFailureHandler extends SimpleUrlAuthenticationFailureHand
 
         super.onAuthenticationFailure(request, response, exception);
 
-        session.invalidate();
+        session.invalidate(); // 세션 삭제
     }
 }
