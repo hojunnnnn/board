@@ -187,13 +187,12 @@
  ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜OAuthAttributes.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂validator
  ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜AbstractValidator.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜EmailCheckValidator.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜NicknameCheckValidator.java
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜UsernameCheckValidator.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜CustomValidators.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CommentService.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜PostsService.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜UserService.java
  ┃ ┃ ┃ ┃ ┃ ┣ 📂domain
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜BaseTimeEntity.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜Comment.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜Posts.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜Role.java
@@ -203,7 +202,6 @@
  ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜SecurityConfig.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜WebConfig.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂persistence
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜BaseTimeEntity.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CommentRepository.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜PostsRepository.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜UserRepository.java
