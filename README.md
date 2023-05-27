@@ -277,7 +277,7 @@ created_date와 modified_date는 날짜 포맷을 적용해주기 위해 datetim
 
 ![게시글 관련 API 설계](https://user-images.githubusercontent.com/59757689/156749365-5e4cee67-1431-4e3a-9140-7b58b6e1fd53.PNG)    
 ![회원 관련 API 설계 (2)](https://user-images.githubusercontent.com/59757689/148911411-0cfb65ee-5782-4f04-a7c9-7dcc84abfed8.PNG)   
-![댓글 관련 API 설계](https://user-images.githubusercontent.com/59757689/148911410-9a7729af-bb3c-49e3-b180-c52ea12ee75c.PNG)   
+![댓글 관련 API 설계v2](https://github.com/hojunnnnn/board/assets/59757689/fa9032f0-3ce1-4ec4-9dbd-f420fb4e6152)  
 
 ## 개발 내용
 
@@ -314,7 +314,7 @@ MVC 설계에서 Model, View, Controller의 역할에 대한 구분도 명확하
 mustache는 로직을 넣을 수 없어 그 과정에 데이터를 렌더링 하기 전 서버에서 전처리를 하거나,    
 화면에 표시된 후에 자바스크립트로 후처리를 해줬지만 조금 아쉬운 부분이 몇 가지 남아있다고 생각합니다.   
 <details>
-  <summary>보완사항 보기</summary>
+  <summary>보완사항</summary>
      
   
 - 페이징 처리 및 검색 페이징에서 페이지 번호 활성화
