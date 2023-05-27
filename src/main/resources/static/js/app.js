@@ -129,7 +129,7 @@ const main = {
             alert("비밀번호는 8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.");
             $('#password').focus();
             return false;
-        } else if(!/^[ㄱ-ㅎ가-힣a-z0-9-_]{2,10}$/.test(data.nickname)) {
+        } else if(!/^[ㄱ-ㅎ가-힣a-zA-Z0-9-_]{2,10}$/.test(data.nickname)) {
             alert("닉네임은 특수문자를 제외한 2~10자리여야 합니다.");
             $('#nickname').focus();
             return false;
@@ -196,6 +196,8 @@ const main = {
         }
         console.log("commentWriterID : " + data.writerUserId);
         console.log("sessionUserID : " + data.sessionUserId);
+        console.log("commentId : " + data.id);
+        console.log("postId : " + data.postsId);
 
         if (data.writerUserId !== data.sessionUserId) {
             alert("본인이 작성한 댓글만 수정 가능합니다.");
@@ -230,7 +232,7 @@ const main = {
             alert("본인이 작성한 댓글만 삭제 가능합니다.");
         } else {
             const con_check = confirm("삭제하시겠습니까?");
-
+            console.log("postId : " + postsId + "commentId : " + commentId);
             if (con_check === true) {
                 $.ajax({
                     type: 'DELETE',
