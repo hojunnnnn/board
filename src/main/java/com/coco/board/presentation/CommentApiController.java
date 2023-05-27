@@ -22,7 +22,7 @@ public class CommentApiController {
 
     /* CREATE */
     @PostMapping("/posts/{id}/comments")
-    public ResponseEntity save(@PathVariable Long id, @RequestBody CommentDto.Request dto,
+    public ResponseEntity<Long> save(@PathVariable Long id, @RequestBody CommentDto.Request dto,
                                @LoginUser UserDto.Response userSessionDto) {
         return ResponseEntity.ok(commentService.save(id, userSessionDto.getNickname(), dto));
     }
@@ -34,16 +34,16 @@ public class CommentApiController {
     }
 
     /* UPDATE */
-    @PutMapping({"/posts/{id}/comments/{id}"})
-    public ResponseEntity update(@PathVariable Long id, @RequestBody CommentDto.Request dto) {
-        commentService.update(id, dto);
+    @PutMapping({"/posts/{postsId}/comments/{id}"})
+    public ResponseEntity<Long> update(@PathVariable Long postsId, @PathVariable Long id, @RequestBody CommentDto.Request dto) {
+        commentService.update(postsId, id, dto);
         return ResponseEntity.ok(id);
     }
 
     /* DELETE */
-    @DeleteMapping("/posts/{id}/comments/{id}")
-    public ResponseEntity delete(@PathVariable Long id) {
-        commentService.delete(id);
+    @DeleteMapping("/posts/{postsId}/comments/{id}")
+    public ResponseEntity<Long> delete(@PathVariable Long postsId, @PathVariable Long id) {
+        commentService.delete(postsId, id);
         return ResponseEntity.ok(id);
     }
 }
